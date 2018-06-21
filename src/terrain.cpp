@@ -1,12 +1,24 @@
 #include <cmath>
 #include <SDL2/SDL_opengl.h>
 #include <GL/GLU.h>
-#include "forms.h"
+#include "terrain.h"
 
 
 using namespace std;
 
 
+Terrain::Terrain(Point center, double length, double width, double height) {
+    this->center = center;
+    this->length = length;
+    this->width = width;
+    this->height = heigth;
+    faces[SOL] = Face(Vector(1,0,0), Vector(0,0,1), center, length, width, RED);
+    faces[SOL] = Face(Vector(1,0,0), Vector(0,0,1), center, LENGTH, WIDTH, RED);
+    faces[SOL] = Face(Vector(1,0,0), Vector(0,0,1), center, LENGTH, WIDTH, RED);
+    faces[SOL] = Face(Vector(1,0,0), Vector(0,0,1), center, LENGTH, WIDTH, RED);
+    faces[SOL] = Face(Vector(1,0,0), Vector(0,0,1), center, LENGTH, WIDTH, RED);
+    faces[SOL] = Face(Vector(1,0,0), Vector(0,0,1), center, LENGTH, WIDTH, RED);
+}
 void Form::update(double delta_t)
 {
     // Nothing to do here, animation update is done in child class method
@@ -15,11 +27,8 @@ void Form::update(double delta_t)
 
 void Form::render()
 {
-    // Point of view for rendering
-    // Common for all Forms
-    Point org = anim.getPos();
-    glTranslated(org.x, org.y, org.z);
-    glColor3f(col.r, col.g, col.b);
+
+   for
 }
 
 

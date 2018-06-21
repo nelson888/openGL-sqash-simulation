@@ -46,10 +46,12 @@
 		<Unit filename="include/animation.h" />
 		<Unit filename="include/forms.h" />
 		<Unit filename="include/geometry.h" />
+		<Unit filename="include/terrain.h" />
 		<Unit filename="src/animation.cpp" />
-		<Unit filename="src/first_prog.cpp" />
 		<Unit filename="src/forms.cpp" />
 		<Unit filename="src/geometry.cpp" />
+		<Unit filename="src/terrain.cpp" />
+		<Unit filename="src/test_program.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
