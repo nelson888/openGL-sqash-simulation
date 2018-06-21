@@ -9,6 +9,7 @@
 #include "geometry.h"
 // Module for generating and rendering forms
 #include "forms.h"
+#include "terrain.h"
 
 
 using namespace std;
@@ -29,25 +30,25 @@ const Uint32 ANIM_DELAY = 10;
 
 
 // Starts up SDL, creates window, and initializes OpenGL
-bool init_scene(SDL_Window** window, SDL_GLContext* context);
+bool init(SDL_Window** window, SDL_GLContext* context);
 
 // Initializes matrices and clear color
-bool initGL_test();
+bool initGL();
 
 // Updating forms for animation
-void update_test(Form* formlist[MAX_FORMS_NUMBER], double delta_t);
+void update(Form* formlist[MAX_FORMS_NUMBER], double delta_t);
 
 // Renders scene to the screen
-const void render_test(Form* formlist[MAX_FORMS_NUMBER], const Point &cam_pos);
+const void render(Form* formlist[MAX_FORMS_NUMBER], const Point &cam_pos);
 
 // Frees media and shuts down SDL
-void close_test(SDL_Window** window);
+void close(SDL_Window** window);
 
 
 /***************************************************************************/
 /* Functions implementations                                               */
 /***************************************************************************/
-bool init_scene(SDL_Window** window, SDL_GLContext* context)
+bool init(SDL_Window** window, SDL_GLContext* context)
 {
     // Initialization flag
     bool success = true;
@@ -89,7 +90,7 @@ bool init_scene(SDL_Window** window, SDL_GLContext* context)
                 }
 
                 // Initialize OpenGL
-                if( !initGL_test() )
+                if( !initGL() )
                 {
                     cout << "Unable to initialize OpenGL!"  << endl;
                     success = false;
@@ -102,7 +103,7 @@ bool init_scene(SDL_Window** window, SDL_GLContext* context)
 }
 
 
-bool initGL_test()
+bool initGL()
 {
     bool success = true;
     GLenum error = GL_NO_ERROR;
@@ -141,7 +142,7 @@ bool initGL_test()
     return success;
 }
 
-void update_test(Form* formlist[MAX_FORMS_NUMBER], double delta_t)
+void update(Form* formlist[MAX_FORMS_NUMBER], double delta_t)
 {
     // Update the list of forms
     unsigned short i = 0;
@@ -152,7 +153,7 @@ void update_test(Form* formlist[MAX_FORMS_NUMBER], double delta_t)
     }
 }
 
-const void render_test(Form* formlist[MAX_FORMS_NUMBER], const Point &cam_pos)
+const void render(Form* formlist[MAX_FORMS_NUMBER], const Point &cam_pos)
 {
     // Clear color buffer and Z-Buffer
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -196,7 +197,7 @@ const void render_test(Form* formlist[MAX_FORMS_NUMBER], const Point &cam_pos)
     }
 }
 
-void close_test(SDL_Window** window)
+void close(SDL_Window** window)
 {
     //Destroy window
     SDL_DestroyWindow(*window);
@@ -210,7 +211,10 @@ void close_test(SDL_Window** window)
 /***************************************************************************/
 /* MAIN Function                                                           */
 /***************************************************************************/
-int main_test(int argc, char* args[])
+
+//TODO METTRE GRAVITY
+//TODO RESISTANCE AIR
+int main(int argc, char* args[])
 {
     // The window we'll be rendering to
     SDL_Window* gWindow = NULL;
@@ -220,7 +224,7 @@ int main_test(int argc, char* args[])
 
 
     // Start up SDL and create window
-    if( !init_scene(&gWindow, &gContext))
+    if( !init(&gWindow, &gContext))
     {
         cout << "Failed to initialize!" << endl;
     }
@@ -234,7 +238,7 @@ int main_test(int argc, char* args[])
         SDL_Event event;
 
         // Camera position
-        Point camera_position(1, 1.0, 25.0);
+        Point camera_position(10, 30.0, 5.0);
 
         // The forms to render
         Form* forms_list[MAX_FORMS_NUMBER];
@@ -243,73 +247,14 @@ int main_test(int argc, char* args[])
         {
             forms_list[i] = NULL;
         }
-        // Create here specific forms and add them to the list...
-        // Don't forget to update the actual number_of_forms !
-
         double LENGTH = 9.75;
         double WIDTH = 6.4;
         double HEIGHT = 4.57;
-        //sol de dimension 9.75x6.4 metres
-        Face *sol = NULL;
-        sol = new Face(Vector(1,0,0), Vector(0,0,1), Point(0, 0, 0), LENGTH, WIDTH, RED);
-        forms_list[number_of_forms] = sol;
+
+        Terrain *terrain = new Terrain(Point(0, 0.0, 0.0), LENGTH, WIDTH, HEIGHT);
+        forms_list[number_of_forms] = terrain;
         number_of_forms++;
 
-        //mur gauche
-        Face *murGauche = NULL;
-        murGauche = new Face(Vector(0,0,-1), Vector(0,1,0), Point(0, 0, WIDTH), WIDTH, HEIGHT);
-        forms_list[number_of_forms] = murGauche;
-        number_of_forms++;
-
-        //mur droit
-        Face *murDroit = NULL;
-        murDroit = new Face(Vector(0,0,-1), Vector(0,1,0), Point(LENGTH, 0, WIDTH), WIDTH, HEIGHT);
-        forms_list[number_of_forms] = murDroit;
-        number_of_forms++;
-
-        Face *fond = NULL;
-        fond = new Face(Vector(1,0,0), Vector(0,1,0), Point(0, 0, 0), LENGTH, HEIGHT);
-        forms_list[number_of_forms] = fond;
-        number_of_forms++;
-
-        Face *derriere = NULL;
-        derriere = new Face(Vector(1,0,0), Vector(0,1,0), Point(0, 0, WIDTH), LENGTH, HEIGHT);
-        //forms_list[number_of_forms] = derriere;
-        //number_of_forms++;
-
-        /*
-        Face *pfirst_face = NULL;
-        pfirst_face = new Face(Vector(1,0,0), Vector(0,1,0), Point(0, 0, 0));
-        forms_list[number_of_forms] = pfirst_face;
-        number_of_forms++;
-
-
-        Face *psnd_face = NULL;
-        psnd_face = new Face(Vector(1,0,0), Vector(0,0,1), Point(0, 0, 0));
-        forms_list[number_of_forms] = psnd_face;
-        number_of_forms++;
-
-        Face *pthrd_face = NULL;
-        pthrd_face = new Face(Vector(0,1,0), Vector(0,0,1), Point(0, 0, 0));
-        forms_list[number_of_forms] = pthrd_face;
-        number_of_forms++;
-
-
-        Face *p4_face = NULL;
-        p4_face = new Face(Vector(1,0,0), Vector(0,0,1), Point(0, 1, 0));
-        forms_list[number_of_forms] = p4_face;
-        number_of_forms++;
-
-        Face *p5_face = NULL;
-        p5_face = new Face(Vector(0,1,0), Vector(0,0,1), Point(1, 0, 0));
-        forms_list[number_of_forms] = p5_face;
-        number_of_forms++;
-
-        Face *p6_face = NULL;
-        p6_face = new Face(Vector(1,0,0), Vector(0,1,0), Point(0, 0, 1));
-        forms_list[number_of_forms] = p6_face;
-        number_of_forms++;
-*/
 
         // Get first "current time"
         previous_time = SDL_GetTicks();
@@ -355,11 +300,11 @@ int main_test(int argc, char* args[])
             if (elapsed_time > ANIM_DELAY)
             {
                 previous_time = current_time;
-                update_test(forms_list, 1e-3 * elapsed_time); // International system units : seconds
+                update(forms_list, 1e-3 * elapsed_time); // International system units : seconds
             }
 
             // Render the scene
-            render_test(forms_list, camera_position);
+            render(forms_list, camera_position);
 
             // Update window screen
             SDL_GL_SwapWindow(gWindow);
@@ -367,7 +312,7 @@ int main_test(int argc, char* args[])
     }
 
     // Free resources and close SDL
-    close_test(&gWindow);
+    close(&gWindow);
 
     return 0;
 }

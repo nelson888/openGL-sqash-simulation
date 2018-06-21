@@ -44,6 +44,8 @@ double distance(Point p1, Point p2);
 
 // Overloaded standard operators
 std::ostream& operator<<(std::ostream& os, const Coordinates& coord);
+Point operator+(const Point &v1, const Point &v2);
+
 Vector operator+(const Vector &v1, const Vector &v2);
 Vector operator-(const Vector &v);
 Vector operator-(const Vector &v1, const Vector &v2);

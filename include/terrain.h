@@ -1,10 +1,10 @@
-#ifndef MODEL_H_INCLUDED
-#define MODEL_H_INCLUDED
+#ifndef TERRAIN_H_INCLUDED
+#define TERRAIN_H_INCLUDED
 
 #include "forms.h"
 #include "geometry.h"
 
-class Terrain
+class Terrain : public Form
 {
 private:
     double length, width, height;
@@ -25,10 +25,8 @@ public:
     const double getHeight() {return height;}
     const Point getCenter() {return center;}
 
+    void update(double delta_t);
     void render();
-
-    void update(double delta);
-
 };
 
 
