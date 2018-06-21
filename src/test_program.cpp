@@ -250,63 +250,63 @@ int main(int argc, char* args[])
         double WIDTH = 6.4;
         double HEIGHT = 4.57;
         //sol de dimension 9.75x6.4 metres
-        Cube_face *sol = NULL;
-        sol = new Cube_face(Vector(1,0,0), Vector(0,0,1), Point(0, 0, 0), LENGTH, WIDTH, RED);
+        Face *sol = NULL;
+        sol = new Face(Vector(1,0,0), Vector(0,0,1), Point(0, 0, 0), LENGTH, WIDTH, RED);
         forms_list[number_of_forms] = sol;
         number_of_forms++;
 
         //mur gauche
-        Cube_face *murGauche = NULL;
-        murGauche = new Cube_face(Vector(0,0,-1), Vector(0,1,0), Point(0, 0, WIDTH), WIDTH, HEIGHT);
+        Face *murGauche = NULL;
+        murGauche = new Face(Vector(0,0,-1), Vector(0,1,0), Point(0, 0, WIDTH), WIDTH, HEIGHT);
         forms_list[number_of_forms] = murGauche;
         number_of_forms++;
 
         //mur droit
-        Cube_face *murDroit = NULL;
-        murDroit = new Cube_face(Vector(0,0,-1), Vector(0,1,0), Point(LENGTH, 0, WIDTH), WIDTH, HEIGHT);
+        Face *murDroit = NULL;
+        murDroit = new Face(Vector(0,0,-1), Vector(0,1,0), Point(LENGTH, 0, WIDTH), WIDTH, HEIGHT);
         forms_list[number_of_forms] = murDroit;
         number_of_forms++;
 
-        Cube_face *fond = NULL;
-        fond = new Cube_face(Vector(1,0,0), Vector(0,1,0), Point(0, 0, 0), LENGTH, HEIGHT);
+        Face *fond = NULL;
+        fond = new Face(Vector(1,0,0), Vector(0,1,0), Point(0, 0, 0), LENGTH, HEIGHT);
         forms_list[number_of_forms] = fond;
         number_of_forms++;
 
-        Cube_face *derriere = NULL;
-        derriere = new Cube_face(Vector(1,0,0), Vector(0,1,0), Point(0, 0, WIDTH), LENGTH, HEIGHT);
+        Face *derriere = NULL;
+        derriere = new Face(Vector(1,0,0), Vector(0,1,0), Point(0, 0, WIDTH), LENGTH, HEIGHT);
         //forms_list[number_of_forms] = derriere;
         //number_of_forms++;
 
         /*
-        Cube_face *pfirst_face = NULL;
-        pfirst_face = new Cube_face(Vector(1,0,0), Vector(0,1,0), Point(0, 0, 0));
+        Face *pfirst_face = NULL;
+        pfirst_face = new Face(Vector(1,0,0), Vector(0,1,0), Point(0, 0, 0));
         forms_list[number_of_forms] = pfirst_face;
         number_of_forms++;
 
 
-        Cube_face *psnd_face = NULL;
-        psnd_face = new Cube_face(Vector(1,0,0), Vector(0,0,1), Point(0, 0, 0));
+        Face *psnd_face = NULL;
+        psnd_face = new Face(Vector(1,0,0), Vector(0,0,1), Point(0, 0, 0));
         forms_list[number_of_forms] = psnd_face;
         number_of_forms++;
 
-        Cube_face *pthrd_face = NULL;
-        pthrd_face = new Cube_face(Vector(0,1,0), Vector(0,0,1), Point(0, 0, 0));
+        Face *pthrd_face = NULL;
+        pthrd_face = new Face(Vector(0,1,0), Vector(0,0,1), Point(0, 0, 0));
         forms_list[number_of_forms] = pthrd_face;
         number_of_forms++;
 
 
-        Cube_face *p4_face = NULL;
-        p4_face = new Cube_face(Vector(1,0,0), Vector(0,0,1), Point(0, 1, 0));
+        Face *p4_face = NULL;
+        p4_face = new Face(Vector(1,0,0), Vector(0,0,1), Point(0, 1, 0));
         forms_list[number_of_forms] = p4_face;
         number_of_forms++;
 
-        Cube_face *p5_face = NULL;
-        p5_face = new Cube_face(Vector(0,1,0), Vector(0,0,1), Point(1, 0, 0));
+        Face *p5_face = NULL;
+        p5_face = new Face(Vector(0,1,0), Vector(0,0,1), Point(1, 0, 0));
         forms_list[number_of_forms] = p5_face;
         number_of_forms++;
 
-        Cube_face *p6_face = NULL;
-        p6_face = new Cube_face(Vector(1,0,0), Vector(0,1,0), Point(0, 0, 1));
+        Face *p6_face = NULL;
+        p6_face = new Face(Vector(1,0,0), Vector(0,1,0), Point(0, 0, 1));
         forms_list[number_of_forms] = p6_face;
         number_of_forms++;
 */
