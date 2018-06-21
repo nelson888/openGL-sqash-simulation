@@ -53,7 +53,7 @@ void Sphere::render()
 }
 
 
-Face::Face(Vector v1, Vector v2, Point org, double l, double w, Color cl)
+Cube_face::Cube_face(Vector v1, Vector v2, Point org, double l, double w, Color cl)
 {
     vdir1 = 1.0 / v1.norm() * v1;
     vdir2 = 1.0 / v2.norm() * v2;
@@ -64,13 +64,13 @@ Face::Face(Vector v1, Vector v2, Point org, double l, double w, Color cl)
 }
 
 
-void Face::update(double delta_t)
+void Cube_face::update(double delta_t)
 {
-    // Do nothing, no physics associated to a Face
+    // Do nothing, no physics associated to a Cube_face
 }
 
 
-void Face::render()
+void Cube_face::render()
 {
     Point p1 = Point();
     Point p2 = p1, p3, p4 = p1;
