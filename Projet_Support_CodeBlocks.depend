@@ -3625,60 +3625,6 @@
 	"begin_code.h"
 	"close_code.h"
 
-<<<<<<< HEAD
-1529587362 source:d:\cours\polytech\projetcoop\opengl-sqash-simulation\src\animation.cpp
-	"animation.h"
-
-1529587362 d:\cours\polytech\projetcoop\opengl-sqash-simulation\include\animation.h
-	"geometry.h"
-
-1529587362 d:\cours\polytech\projetcoop\opengl-sqash-simulation\include\geometry.h
-	<iostream>
-
-1529587362 source:d:\cours\polytech\projetcoop\opengl-sqash-simulation\src\forms.cpp
-	<cmath>
-	<SDL2/SDL_opengl.h>
-	<GL/GLU.h>
-	"forms.h"
-
-1529587362 d:\cours\polytech\projetcoop\opengl-sqash-simulation\include\sdl2\sdl_opengl.h
-	"SDL_config.h"
-	"gl_mangle.h"
-	<windows.h>
-	"SDL_opengl_glext.h"
-
-1529587362 d:\cours\polytech\projetcoop\opengl-sqash-simulation\include\sdl2\sdl_config.h
-	"SDL_platform.h"
-
-1529587362 d:\cours\polytech\projetcoop\opengl-sqash-simulation\include\sdl2\sdl_platform.h
-	"AvailabilityMacros.h"
-	"TargetConditionals.h"
-	<winapifamily.h>
-	"begin_code.h"
-	"close_code.h"
-
-1529587362 d:\cours\polytech\projetcoop\opengl-sqash-simulation\include\sdl2\begin_code.h
-
-1529587362 d:\cours\polytech\projetcoop\opengl-sqash-simulation\include\sdl2\close_code.h
-
-1529587362 d:\cours\polytech\projetcoop\opengl-sqash-simulation\include\sdl2\sdl_opengl_glext.h
-	<windows.h>
-	<stddef.h>
-	<inttypes.h>
-	<inttypes.h>
-	<inttypes.h>
-	<stdint.h>
-	<stdint.h>
-	<inttypes.h>
-
-1529587362 d:\cours\polytech\projetcoop\opengl-sqash-simulation\include\forms.h
-	"geometry.h"
-	"animation.h"
-
-1529587362 source:d:\cours\polytech\projetcoop\opengl-sqash-simulation\src\geometry.cpp
-	<cmath>
-	"geometry.h"
-=======
 1529582971 source:c:\users\tfonkou\desktop\projet_support_codeblocks\src\test_program.cpp
 	<iostream>
 	<cmath>
@@ -3687,5 +3633,4 @@
 	<GL/GLU.h>
 	"geometry.h"
 	"forms.h"
->>>>>>> dbfdf696a6326d9a4b01b867f058ee248d8b27ca
 
