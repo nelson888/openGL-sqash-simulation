@@ -238,7 +238,7 @@ int main(int argc, char* args[])
         SDL_Event event;
 
         // Camera position
-        Point camera_position(10, 30.0, 5.0);
+        Point camera_position(10, 25.0, 15.0);
 
         // The forms to render
         Form* forms_list[MAX_FORMS_NUMBER];
@@ -251,7 +251,7 @@ int main(int argc, char* args[])
         double WIDTH = 6.4;
         double HEIGHT = 4.57;
 
-        Terrain *terrain = new Terrain(Point(0, 0.0, 0.0), LENGTH, WIDTH, HEIGHT);
+        Terrain *terrain = new Terrain(Point(0.0, 0.0, 0.0), LENGTH, WIDTH, HEIGHT);
         forms_list[number_of_forms] = terrain;
         number_of_forms++;
 

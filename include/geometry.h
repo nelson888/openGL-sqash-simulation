@@ -20,6 +20,7 @@ class Point : public Coordinates
 public:
     // Point constructor calls the base class constructor and do nothing more
     Point(double xx=0, double yy=0, double zz=0) : Coordinates(xx, yy, zz) {}
+    Point(const Point& point) : Coordinates(point.x, point.y, point.z) {}
     void translate(const Vector &);
 };
 
