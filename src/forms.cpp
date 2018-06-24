@@ -53,14 +53,18 @@ void Sphere::render()
 }
 
 
-Face::Face(Vector v1, Vector v2, Point org, double l, double w, Color cl)
+Face::Face(Vector v1, Vector v2, Point org, double l, double w,
+           ColorGradient colorGradient)
 {
     vdir1 = 1.0 / v1.norm() * v1;
     vdir2 = 1.0 / v2.norm() * v2;
     anim.setPos(org);
     length = l;
     width = w;
-    col = cl;
+    col = colorGradient.getStartColor();
+    middle1Color = colorGradient.getMiddle1Color();
+    middle2Color = colorGradient.getMiddle2Color();
+    endColor = colorGradient.getEndColor();
 }
 
 
@@ -69,6 +73,9 @@ void Face::update(double delta_t)
     // Do nothing, no physics associated to a Face
 }
 
+void changeColor(Color color) {
+    glColor3f(color.r, color.g, color.b);
+}
 
 void Face::render()
 {
@@ -82,13 +89,13 @@ void Face::render()
     Form::render();
     glBegin(GL_QUADS);
     {
-        glColor3f(col.r,col.g,col.b);
+        changeColor(col);
         glVertex3d(p1.x, p1.y, p1.z);
-
+        changeColor(middle1Color);
         glVertex3d(p2.x, p2.y, p2.z);
-
+        changeColor(middle2Color);
         glVertex3d(p3.x, p3.y, p3.z);
-
+        changeColor(endColor);
         glVertex3d(p4.x, p4.y, p4.z);
     }
     glEnd();

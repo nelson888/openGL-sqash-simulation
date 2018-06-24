@@ -50,6 +50,7 @@
 		<Unit filename="src/animation.cpp" />
 		<Unit filename="src/forms.cpp" />
 		<Unit filename="src/geometry.cpp" />
+		<Unit filename="src/scene.cpp" />
 		<Unit filename="src/terrain.cpp" />
 		<Unit filename="src/test_program.cpp" />
 		<Extensions>

@@ -7,16 +7,22 @@
 class Terrain : public Form
 {
 private:
+    //index des faces du tableau
+    static const int GROUND = 0;
+    static const int RIGHT = 1;
+    static const int LEFT = 2;
+    static const int FRONT = 3;
+    static const int BACK = 4;
+    static const int ROOF = 5;
+    static const int NB_FACES = 6;
+    static const int NB_LINES = 11;
+    static const double LINE_WIDTH = 0.05;
+
     double length, width, height;
     Point center;
-    Face faces[6];
-    //index des faces du tableau
-    static const int SOL = 0;
-    static const int DROIT = 1;
-    static const int GAUCHE = 2;
-    static const int FOND = 3;
-    static const int DERRIERE = 4;
-    static const int PLAFOND = 5;
+    Face faces[NB_FACES];
+    Face lines[NB_LINES];
+
 public:
     Terrain(Point center = Point(0.0, 0.0, 0.0), double length = 0.0, double width = 0.0, double height = 0.0);
 

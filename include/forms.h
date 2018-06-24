@@ -12,12 +12,45 @@ public:
     Color(float rr = 1.0f, float gg = 1.0f, float bb = 1.0f) {r=rr; g=gg; b=bb;}
 };
 
+class ColorGradient
+{
+private:
+    Color startColor;
+    Color middle1Color;
+    Color middle2Color;
+    Color endColor;
+public:
+    ColorGradient(Color startColorr, Color middle1Colorr, Color middle2Colorr, Color endColorr) {
+        startColor = startColorr;
+        middle1Color = middle1Colorr;
+        middle2Color = middle2Colorr;
+        endColor = endColorr;
+    }
+    ColorGradient(float r, float g, float b) {
+        startColor = Color(r,g,b);
+        middle1Color = startColor;
+        middle2Color = startColor;
+        endColor = startColor;
+    }
+    ColorGradient(Color color) {
+        startColor = color;
+        middle1Color = startColor;
+        middle2Color = startColor;
+        endColor = startColor;
+    }
+
+    Color getStartColor() {return startColor;}
+    Color getMiddle1Color() {return middle1Color;}
+    Color getMiddle2Color() {return middle2Color;}
+    Color getEndColor() {return endColor;}
+};
 // Constant Colors
 const Color RED(1.0f, 0.0f, 0.0f);
 const Color BLUE(0.0f, 0.0f, 1.0f);
 const Color GREEN(0.0f, 1.0f, 0.0f);
 const Color YELLOW(1.0f, 1.0f, 0.0f);
 const Color WHITE(1.0f, 1.0f, 1.0f);
+const Color BLACK(0.0f, 0.0f, 0.0f);
 
 
 // Generic class to render and animate an object
@@ -29,6 +62,7 @@ protected:
 public:
     Animation& getAnim() {return anim;}
     void setAnim(Animation ani) {anim = ani;}
+    void setColor(Color colorr) {col = colorr;}
     // This method should update the anim object with the corresponding physical model
     // It has to be done in each inherited class, otherwise all forms will have the same movements !
     // Virtual method for dynamic function call
@@ -62,10 +96,15 @@ class Face : public Form
 private:
     Vector vdir1, vdir2;
     double length, width;
+    Color middle1Color;
+    Color middle2Color;
+    Color endColor;
 public:
     Face(Vector v1 = Vector(1,0,0), Vector v2 = Vector(0,0,1),
           Point org = Point(), double l = 1.0, double w = 1.0,
-          Color cl = Color());
+          ColorGradient colorGradient = ColorGradient(Color(), Color(), Color(), Color()));
+
+
     void update(double delta_t);
     void render();
 };

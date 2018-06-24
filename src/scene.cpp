@@ -22,6 +22,8 @@ using namespace std;
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 
+const double CAMERA_MOOVE_OFFSET = 0.25;
+
 // Max number of forms : static allocation
 const int MAX_FORMS_NUMBER = 10;
 
@@ -153,7 +155,7 @@ void update(Form* formlist[MAX_FORMS_NUMBER], double delta_t)
     }
 }
 
-const void render(Form* formlist[MAX_FORMS_NUMBER], const Point &cam_pos)
+const void render(Form* formlist[MAX_FORMS_NUMBER], const Point &cam_pos, const Point &look_at)
 {
     // Clear color buffer and Z-Buffer
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -163,7 +165,7 @@ const void render(Form* formlist[MAX_FORMS_NUMBER], const Point &cam_pos)
     glLoadIdentity();
 
     // Set the camera position and parameters
-    gluLookAt(cam_pos.x,cam_pos.y,cam_pos.z, 0.0,0.0,0.0, 0.0,1.0,0.0);
+    gluLookAt(cam_pos.x,cam_pos.y,cam_pos.z, look_at.x, look_at.y, look_at.z, 0.0,1.0,0.0);
     // Isometric view
     //glRotated(-45, 0, 1, 0);
     //glRotated(30, 1, 0, -1);
@@ -237,8 +239,15 @@ int main(int argc, char* args[])
         // Event handler
         SDL_Event event;
 
+        double LENGTH = 9.75;
+        double WIDTH = 6.4;
+        double HEIGHT = 4.8;
+
         // Camera position
-        Point camera_position(10, 25.0, 15.0);
+        Point camera_position(0.0, 2.0, -WIDTH*2);
+
+        //Point that we look at
+        Point look_at(0.0,HEIGHT/2, WIDTH);
 
         // The forms to render
         Form* forms_list[MAX_FORMS_NUMBER];
@@ -247,11 +256,9 @@ int main(int argc, char* args[])
         {
             forms_list[i] = NULL;
         }
-        double LENGTH = 9.75;
-        double WIDTH = 6.4;
-        double HEIGHT = 4.57;
 
-        Terrain *terrain = new Terrain(Point(0.0, 0.0, 0.0), LENGTH, WIDTH, HEIGHT);
+
+        Terrain *terrain = new Terrain(Point(0, 0.0, 0.0), LENGTH, WIDTH, HEIGHT);
         forms_list[number_of_forms] = terrain;
         number_of_forms++;
 
@@ -284,7 +291,20 @@ int main(int argc, char* args[])
                     case SDLK_ESCAPE:
                         quit = true;
                         break;
-
+                    case SDLK_DOWN:
+                        camera_position.z -= CAMERA_MOOVE_OFFSET;
+                        break;
+                    case SDLK_UP:
+                        camera_position.z += CAMERA_MOOVE_OFFSET;
+                        break;
+                    case SDLK_LEFT:
+                        camera_position.x -= CAMERA_MOOVE_OFFSET;
+                        look_at.x += CAMERA_MOOVE_OFFSET;
+                        break;
+                    case SDLK_RIGHT:
+                        camera_position.x += CAMERA_MOOVE_OFFSET;
+                        look_at.x -= CAMERA_MOOVE_OFFSET;
+                        break;
                     default:
                         break;
                     }
@@ -304,7 +324,7 @@ int main(int argc, char* args[])
             }
 
             // Render the scene
-            render(forms_list, camera_position);
+            render(forms_list, camera_position, look_at);
 
             // Update window screen
             SDL_GL_SwapWindow(gWindow);
