@@ -1,6 +1,6 @@
 #include "Balle.h"
 
-Balle::Balle(Point center, Vector accel):Sphere(RADIUS,BLACK)
+Balle::Balle(Point center, Vector accel):Sphere(RADIUS,WHITE)
 {
     anim.setPos(center);
     anim.setAccel(accel);

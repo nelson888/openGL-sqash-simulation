@@ -26,3 +26,5 @@ obj/Debug/src/forms.o
 obj/Debug/src/scene.o
 obj/Debug/src/terrain.o
 obj/Debug/src/test_program.o
+obj/Debug/src/Balle.o
+*.o
