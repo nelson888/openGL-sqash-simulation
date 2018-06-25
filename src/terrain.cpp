@@ -19,7 +19,7 @@ Terrain::Terrain(Point center, double length, double width, double height) {
     faces[GROUND] = Face(Vector(1,0,0), Vector(0,0,1), Point(-length/2, 0, -width/2), length, width, GROUND_COLOR);
     faces[RIGHT] = Face(Vector(0,0,-1), Vector(0,1,0), Point(-length/2, 0, width/2), width, height, WALL_COLOR);
     faces[FRONT] = Face(Vector(1,0,0), Vector(0,1,0), Point(-length/2, 0, width/2), length, height, WALL_COLOR);
-    faces[BACK] = Face(Vector(1,0,0), Vector(0,1,0), Point(-length/2, 0, -width/2), length, height, ColorGradient(WALL_COLOR, 0.6f));
+    //faces[BACK] = Face(Vector(1,0,0), Vector(0,1,0), Point(-length/2, 0, -width/2), length, height, ColorGradient(WALL_COLOR, 0.6f));
     faces[LEFT] = Face(Vector(0,0,-1), Vector(0,1,0), Point(length/2, 0, width/2), width, height, WALL_COLOR);
     faces[ROOF] = Face(Vector(1,0,0), Vector(0,0,1), Point(-length/2, height, -width/2), length, width, GROUND_COLOR);
 
