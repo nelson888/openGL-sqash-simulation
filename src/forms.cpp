@@ -74,7 +74,7 @@ void Face::update(double delta_t)
 }
 
 void changeColor(Color color) {
-    glColor3f(color.r, color.g, color.b);
+    glColor4f(color.r, color.g, color.b, color.a);
 }
 
 void Face::render()

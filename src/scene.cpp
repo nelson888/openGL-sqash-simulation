@@ -101,6 +101,9 @@ bool init(SDL_Window** window, SDL_GLContext* context)
         }
     }
 
+    //enable transparancy
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     return success;
 }
 
@@ -239,8 +242,8 @@ int main(int argc, char* args[])
         // Event handler
         SDL_Event event;
 
-        double LENGTH = 9.75;
-        double WIDTH = 6.4;
+        double WIDTH = 9.75;
+        double LENGTH = 6.4;
         double HEIGHT = 4.8;
 
         // Camera position

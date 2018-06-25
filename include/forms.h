@@ -8,8 +8,9 @@
 class Color
 {
 public:
-    float r, g, b;
-    Color(float rr = 1.0f, float gg = 1.0f, float bb = 1.0f) {r=rr; g=gg; b=bb;}
+    float r, g, b, a;
+    Color(float rr = 1.0f, float gg = 1.0f, float bb = 1.0f) {r=rr; g=gg; b=bb; a = 1.f; }
+    Color(float rr, float gg, float bb, float aa) {r=rr; g=gg; b=bb; a = aa; }
 };
 
 class ColorGradient
@@ -39,6 +40,17 @@ public:
         endColor = startColor;
     }
 
+    ColorGradient(const ColorGradient& color, float alpha) {
+        startColor = color.startColor;
+        middle1Color = color.middle1Color;
+        middle2Color = color.middle2Color;
+        endColor = color.endColor;
+
+        startColor.a = alpha;
+        middle1Color.a = alpha;
+        middle2Color.a = alpha;
+        endColor.a = alpha;
+    }
     Color getStartColor() {return startColor;}
     Color getMiddle1Color() {return middle1Color;}
     Color getMiddle2Color() {return middle2Color;}

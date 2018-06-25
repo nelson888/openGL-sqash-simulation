@@ -13,13 +13,13 @@ Terrain::Terrain(Point center, double length, double width, double height) {
     this->height = height;
 
     ColorGradient WALL_COLOR = ColorGradient(Color(0.88f, 0.84f, 0.77f), Color(0.98f, 0.92f, 0.75f), Color(0.98f, 0.92f, 0.75f), Color(1.0f, 0.98f, 0.8f));
-    ColorGradient GROUND_COLOR = ColorGradient(RED);
-    ColorGradient LINE_COLOR = ColorGradient(BLACK);
+    ColorGradient GROUND_COLOR = ColorGradient(Color(227.0 / 255.0, 190.0 / 255.0, 145.0 / 255.0), Color(222.0 / 255.0, 180.0 / 255.0, 142.0 / 255.0), Color(222.0 / 255.0, 180.0 / 255.0f, 142.0f / 255.0f), Color(189.0 / 255.0f, 150.0f / 255.0f, 107.0f / 255.0f));
+    ColorGradient LINE_COLOR = ColorGradient(Color(206.0 / 255.0, 11.0 / 255.0, 15.0 / 255.0), Color(226.0 / 255.0, 11.0 / 255.0, 15.0 / 255.0), Color(226.0 / 255.0, 11.0 / 255.0, 15.0 / 255.0), Color(226.0 / 255.0, 0.0 / 255.0, 0.0 / 255.0));
 
     faces[GROUND] = Face(Vector(1,0,0), Vector(0,0,1), Point(-length/2, 0, -width/2), length, width, GROUND_COLOR);
     faces[RIGHT] = Face(Vector(0,0,-1), Vector(0,1,0), Point(-length/2, 0, width/2), width, height, WALL_COLOR);
     faces[FRONT] = Face(Vector(1,0,0), Vector(0,1,0), Point(-length/2, 0, width/2), length, height, WALL_COLOR);
-    faces[BACK] = Face(Vector(1,0,0), Vector(0,1,0), Point(-length/2, height, -width/2), length, height, WALL_COLOR);
+    faces[BACK] = Face(Vector(1,0,0), Vector(0,1,0), Point(-length/2, 0, -width/2), length, height, ColorGradient(WALL_COLOR, 0.6f));
     faces[LEFT] = Face(Vector(0,0,-1), Vector(0,1,0), Point(length/2, 0, width/2), width, height, WALL_COLOR);
     faces[ROOF] = Face(Vector(1,0,0), Vector(0,0,1), Point(-length/2, height, -width/2), length, width, GROUND_COLOR);
 
