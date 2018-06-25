@@ -4047,14 +4047,14 @@
 1529589804 d:\cours\polytech\projetcoop\opengl-sqash-simulation\include\animation.h
 	"geometry.h"
 
-1529930507 d:\cours\polytech\projetcoop\opengl-sqash-simulation\include\geometry.h
+1529943054 d:\cours\polytech\projetcoop\opengl-sqash-simulation\include\geometry.h
 	<iostream>
 
-1529589804 source:d:\cours\polytech\projetcoop\opengl-sqash-simulation\src\geometry.cpp
+1529943150 source:d:\cours\polytech\projetcoop\opengl-sqash-simulation\src\geometry.cpp
 	<cmath>
 	"geometry.h"
 
-1529930508 source:d:\cours\polytech\projetcoop\opengl-sqash-simulation\src\terrain.cpp
+1529938389 source:d:\cours\polytech\projetcoop\opengl-sqash-simulation\src\terrain.cpp
 	<cmath>
 	<SDL2/SDL_opengl.h>
 	<GL/GLU.h>
@@ -4094,7 +4094,7 @@
 	"forms.h"
 	"geometry.h"
 
-1529930507 d:\cours\polytech\projetcoop\opengl-sqash-simulation\include\forms.h
+1529938389 d:\cours\polytech\projetcoop\opengl-sqash-simulation\include\forms.h
 	"geometry.h"
 	"animation.h"
 
@@ -4412,13 +4412,13 @@
 	"begin_code.h"
 	"close_code.h"
 
-1529930508 source:d:\cours\polytech\projetcoop\opengl-sqash-simulation\src\forms.cpp
+1529938389 source:d:\cours\polytech\projetcoop\opengl-sqash-simulation\src\forms.cpp
 	<cmath>
 	<SDL2/SDL_opengl.h>
 	<GL/GLU.h>
 	"forms.h"
 
-1529930508 source:d:\cours\polytech\projetcoop\opengl-sqash-simulation\src\scene.cpp
+1529942199 source:d:\cours\polytech\projetcoop\opengl-sqash-simulation\src\scene.cpp
 	<iostream>
 	<cmath>
 	<SDL2/SDL.h>
@@ -4427,11 +4427,13 @@
 	"geometry.h"
 	"forms.h"
 	"terrain.h"
-
-1529935775 source:d:\cours\polytech\projetcoop\opengl-sqash-simulation\src\balle.cpp
 	"Balle.h"
 
-1529935815 d:\cours\polytech\projetcoop\opengl-sqash-simulation\include\balle.h
+1529939644 source:d:\cours\polytech\projetcoop\opengl-sqash-simulation\src\balle.cpp
+	"Balle.h"
+
+1529942291 d:\cours\polytech\projetcoop\opengl-sqash-simulation\include\balle.h
 	"forms.h"
 	"geometry.h"
+	"math.h"
 

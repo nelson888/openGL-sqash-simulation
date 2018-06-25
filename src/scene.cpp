@@ -10,6 +10,7 @@
 // Module for generating and rendering forms
 #include "forms.h"
 #include "terrain.h"
+#include "Balle.h"
 
 
 using namespace std;
@@ -263,6 +264,10 @@ int main(int argc, char* args[])
 
         Terrain *terrain = new Terrain(Point(0, 0.0, 0.0), LENGTH, WIDTH, HEIGHT);
         forms_list[number_of_forms] = terrain;
+        number_of_forms++;
+
+        Balle *balle = new Balle(Point(0,HEIGHT/2,-(LENGTH/2)+0.2), Vector(0,0,0));
+        forms_list[number_of_forms] = balle;
         number_of_forms++;
 
 

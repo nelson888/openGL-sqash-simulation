@@ -12,6 +12,17 @@ void Point::translate(const Vector &v)
     z += v.z;
 }
 
+Point operator+(const Point &v1, const Point &v2)
+{
+    Point res = v1;
+
+    res.x += v2.x;
+    res.y += v2.y;
+    res.z += v2.z;
+
+    return res;
+}
+
 
 Vector::Vector(Point p1, Point p2)
 {
