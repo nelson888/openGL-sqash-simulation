@@ -1,5 +1,4 @@
 #include "Balle.h"
-#include "geometry.h"
 
 Balle::Balle()
 {
@@ -11,5 +10,5 @@ Balle::~Balle()
     //dtor
 }
 
-double getWeight(){return weight;}
-double getAccel(){return accel;}
+double Balle::getWeight(){return weight;}
+Vector Balle::getAccel(){return accel;}

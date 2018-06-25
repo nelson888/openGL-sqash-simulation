@@ -4,16 +4,19 @@
 #define WEIGHT 24
 #define RADIUS 0.02
 
-class Balle:public Sphere
+#include "forms.h"
+#include "geometry.h"
+
+class Balle : public Sphere
 {
     public:
         Balle();
         virtual ~Balle();
 
-        void render();
-        Coordinates nextPosition();
+        Point nextPosition();
 
         double getWeight();
+        Vector getAccel();
 
     protected:
 
@@ -21,7 +24,7 @@ class Balle:public Sphere
         double radius = RADIUS;
         double weight = WEIGHT;
 
-        Coordinates position;
+        Point position;
         Vector accel;
 };
 

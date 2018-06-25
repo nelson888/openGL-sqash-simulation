@@ -43,10 +43,13 @@
 			<Add library="glu32" />
 			<Add directory="./lib" />
 		</Linker>
+		<Unit filename="include/Balle.h" />
 		<Unit filename="include/animation.h" />
 		<Unit filename="include/forms.h" />
 		<Unit filename="include/geometry.h" />
+		<Unit filename="include/scene.h" />
 		<Unit filename="include/terrain.h" />
+		<Unit filename="src/Balle.cpp" />
 		<Unit filename="src/animation.cpp" />
 		<Unit filename="src/forms.cpp" />
 		<Unit filename="src/geometry.cpp" />
