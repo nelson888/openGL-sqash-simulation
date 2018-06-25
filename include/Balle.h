@@ -4,7 +4,7 @@
 #define WEIGHT 24
 #define RADIUS 0.02
 
-class Balle
+class Balle:public Sphere
 {
     public:
         Balle();
@@ -13,13 +13,13 @@ class Balle
         void render();
         Coordinates nextPosition();
 
+        double getWeight();
+
     protected:
 
     private:
         double radius = RADIUS;
         double weight = WEIGHT;
-
-        Sphere glForm = Sphere(radius, BLACK);
 
         Coordinates position;
         Vector accel;

@@ -10,3 +10,6 @@ Balle::~Balle()
 {
     //dtor
 }
+
+double getWeight(){return weight;}
+double getAccel(){return accel;}
