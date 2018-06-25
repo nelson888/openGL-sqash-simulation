@@ -1,28 +1,30 @@
 #ifndef BALLE_H
 #define BALLE_H
 
-#define WEIGHT 24
-#define RADIUS 0.02
+#define WEIGHT 0.024
+#define RADIUS 0.5
+#define DRAG 0.05
 
 #include "forms.h"
 #include "geometry.h"
+#include "math.h"
 
 class Balle : public Sphere
 {
     public:
-        Balle();
+        Balle(Point center, Vector accel);
         virtual ~Balle();
 
-        Point nextPosition();
-
         double getWeight();
-        Vector getAccel();
+
+        void update(double delta);
 
     protected:
 
     private:
-        double radius = RADIUS;
-        double weight = WEIGHT;
+        double weight;
+        double drag;
+        double surface;
 
         Point position;
         Vector accel;

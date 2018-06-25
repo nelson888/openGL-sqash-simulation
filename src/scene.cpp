@@ -10,6 +10,7 @@
 // Module for generating and rendering forms
 #include "forms.h"
 #include "terrain.h"
+#include "Balle.h"
 
 
 using namespace std;
@@ -265,12 +266,20 @@ int main(int argc, char* args[])
         forms_list[number_of_forms] = terrain;
         number_of_forms++;
 
+<<<<<<< HEAD
         /*
         EllipseDisk *ellipse = new EllipseDisk(10, X_AXIS, Y_AXIS, WHITE, 0.750, 1.0);
         forms_list[number_of_forms] = ellipse;
         number_of_forms++;
         ellipse->getAnim().setPos(Point(0.0, HEIGHT/2, 0.0));
 */
+=======
+        Balle *balle = new Balle(Point(0,HEIGHT/2,-(LENGTH/2)+0.2), Vector(0,100,100));
+        forms_list[number_of_forms] = balle;
+        number_of_forms++;
+
+
+>>>>>>> 72b304a480fbf5479014f8484a394a691bc7fac6
         // Get first "current time"
         previous_time = SDL_GetTicks();
         // While application is running
