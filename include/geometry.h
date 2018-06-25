@@ -39,6 +39,9 @@ public:
     void operator+=(const Vector &v);
 };
 
+const Vector X_AXIS = Vector(1.0, 0.0, 0.0);
+const Vector Y_AXIS = Vector(0.0, 1.0, 0.0);
+const Vector Z_AXIS = Vector(0.0, 0.0, 1.0);
 
 // Compute the distance between two points
 double distance(Point p1, Point p2);

@@ -265,7 +265,12 @@ int main(int argc, char* args[])
         forms_list[number_of_forms] = terrain;
         number_of_forms++;
 
-
+        /*
+        EllipseDisk *ellipse = new EllipseDisk(10, X_AXIS, Y_AXIS, WHITE, 0.750, 1.0);
+        forms_list[number_of_forms] = ellipse;
+        number_of_forms++;
+        ellipse->getAnim().setPos(Point(0.0, HEIGHT/2, 0.0));
+*/
         // Get first "current time"
         previous_time = SDL_GetTicks();
         // While application is running

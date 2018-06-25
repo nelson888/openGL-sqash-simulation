@@ -36,4 +36,4 @@ public:
 };
 
 
-#endif // ANIMATION_H_INCLUDED
+#endif
