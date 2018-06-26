@@ -105,25 +105,23 @@ public:
 class EllipseDisk : public Form
 {
 private:
-    double radius;
     double sinFactor;
     double cosFactor;
     Vector dir1;
     Vector dir2;
 public:
-    EllipseDisk(double radiuss = 0.0,Vector dirr1 = Vector(1.0,0.0,0.0),Vector dirr2 = Vector(0.0,1.0,0.0),
+    EllipseDisk(Vector dirr1 = Vector(1.0,0.0,0.0),Vector dirr2 = Vector(0.0,1.0,0.0),
             Color cl = Color(), double sinFactorr = 1.0, double cosFactorr = 1.0) {
-        radius = radiuss;
         col = cl;
         sinFactor = sinFactorr;
         cosFactor = cosFactorr;
         dir1 = dirr1;
         dir2 = dirr2;
     }
-    const double getRadius() {return radius;}
-    void setRadius(double r) {radius = r;}
     void update(double delta_t);
     void render();
+    double getSinFactor() {return sinFactor;}
+    double getCosFactor() {return cosFactor;}
 };
 
 

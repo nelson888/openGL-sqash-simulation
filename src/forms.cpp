@@ -19,7 +19,12 @@ void Form::render()
     // Common for all Forms
     Point org = anim.getPos();
     glTranslated(org.x, org.y, org.z);
-    glColor3f(col.r, col.g, col.b);
+    if (col.a == 1.0f) {
+        glColor3f(col.r, col.g, col.b);
+    } else {
+        glColor4f(col.r, col.g, col.b, col.a);
+     }
+
 }
 
 
