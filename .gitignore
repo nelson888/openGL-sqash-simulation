@@ -28,3 +28,6 @@ obj/Debug/src/terrain.o
 obj/Debug/src/test_program.o
 obj/Debug/src/Balle.o
 *.o
+bin/Debug/Projet_Support_CodeBlocks.exe
+*.o
+*.exe
