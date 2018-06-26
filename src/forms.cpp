@@ -52,6 +52,25 @@ void Sphere::render()
     gluDeleteQuadric(quad);
 }
 
+void EllipseDisk::update(double delta_t)
+{
+    // Complete this part
+}
+
+void EllipseDisk::render()
+{
+    Form::render();
+
+    glBegin(GL_TRIANGLE_FAN);
+    for(int t = 0; t <= 360; t +=1)
+	{
+	    Vector position = sinFactor*sin(t)*dir1 + cosFactor* cos(t)* dir2;
+	    glVertex3f(position.x,position.y,position.z);
+    }
+    glEnd();
+}
+
+
 
 Face::Face(Vector v1, Vector v2, Point org, double l, double w,
            ColorGradient colorGradient)
