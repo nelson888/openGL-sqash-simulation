@@ -2,7 +2,7 @@
 #define BALLE_H
 
 #define WEIGHT 0.024
-#define RADIUS 0.5
+#define RADIUS 0.02
 #define DRAG 0.05
 
 #include "forms.h"
