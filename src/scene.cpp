@@ -268,7 +268,7 @@ int main(int argc, char* args[])
         number_of_forms++;
 
         Raquette *raquette = new Raquette(SCREEN_WIDTH, SCREEN_HEIGHT,
-                                          LENGTH, HEIGHT, -WIDTH*0.5, 0.5, 0.4);
+                                          LENGTH, HEIGHT, -WIDTH*0.5, 0.5);
         forms_list[number_of_forms] = raquette;
         number_of_forms++;
         raquette->getAnim().setPos(Point(0.0, HEIGHT/2, 0.0));

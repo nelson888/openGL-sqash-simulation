@@ -69,7 +69,7 @@ void EllipseDisk::render()
     glBegin(GL_TRIANGLE_FAN);
     for(int t = 0; t <= 360; t +=1)
 	{
-	    Vector position = sinFactor*sin(t)*dir1 + cosFactor* cos(t)* dir2;
+	    Vector position = radius*sin(t)*dir1 + radius* cos(t)* dir2;
 	    glVertex3f(position.x,position.y,position.z);
     }
     glEnd();

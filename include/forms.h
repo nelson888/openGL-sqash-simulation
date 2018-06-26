@@ -107,21 +107,20 @@ class EllipseDisk : public Form
 private:
     double sinFactor;
     double cosFactor;
-    Vector dir1;
-    Vector dir2;
+    double radius;
+    Vector dir1; //axe avec un facteur
+    Vector dir2; //axe avec un facteur
 public:
-    EllipseDisk(Vector dirr1 = Vector(1.0,0.0,0.0),Vector dirr2 = Vector(0.0,1.0,0.0),
-            Color cl = Color(), double sinFactorr = 1.0, double cosFactorr = 1.0) {
+    EllipseDisk(double radius, Vector dirr1 = Vector(1.0,0.0,0.0),Vector dirr2 = Vector(0.0,1.0,0.0),
+            Color cl = Color()) {
         col = cl;
-        sinFactor = sinFactorr;
-        cosFactor = cosFactorr;
+        this->radius = radius;
         dir1 = dirr1;
         dir2 = dirr2;
     }
     void update(double delta_t);
     void render();
-    double getSinFactor() {return sinFactor;}
-    double getCosFactor() {return cosFactor;}
+    double getRadius() {return radius;}
 };
 
 
