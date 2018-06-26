@@ -267,6 +267,7 @@ int main(int argc, char* args[])
         number_of_forms++;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         Balle *balle = new Balle(Point(0,HEIGHT/2,-(LENGTH/2)+0.2), Vector(50,100,100));
 =======
 <<<<<<< HEAD
@@ -279,6 +280,9 @@ int main(int argc, char* args[])
 =======
         Balle *balle = new Balle(Point(0,HEIGHT/2,-(LENGTH/2)+0.2), Vector(0,100,100));
 >>>>>>> cc5881a7b939b20c8f88b77582107f764796c204
+=======
+        Balle *balle = new Balle(Point(0,HEIGHT/2,-(LENGTH/2)+0.2), Vector(0,0,0));
+>>>>>>> parent of 72b304a... Mouvement Balle
         forms_list[number_of_forms] = balle;
         number_of_forms++;
 

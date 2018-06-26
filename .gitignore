@@ -24,6 +24,7 @@ obj/Debug/src/forms.o
 obj/Debug/src/scene.o
 obj/Debug/src/terrain.o
 obj/Debug/src/test_program.o
+<<<<<<< HEAD
 obj/Debug/src/Balle.o
 *.o
 bin/Debug/Projet_Support_CodeBlocks.exe
@@ -35,3 +36,8 @@ obj/Debug/src/*.o
 
 
 >>>>>>> cc5881a7b939b20c8f88b77582107f764796c204
+=======
+>>>>>>> parent of 72b304a... Mouvement Balle
+*.o
+*.exe
+*.layout
