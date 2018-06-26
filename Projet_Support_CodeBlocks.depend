@@ -3703,7 +3703,7 @@
 	"geometry.h"
 	"animation.h"
 
-1529643982 source:c:\users\nelson\desktop\opengl-sqash-simulation\src\geometry.cpp
+1529964611 source:c:\users\nelson\desktop\opengl-sqash-simulation\src\geometry.cpp
 	<cmath>
 	"geometry.h"
 
@@ -4031,7 +4031,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1529938032 source:c:\users\nelson\desktop\opengl-sqash-simulation\src\scene.cpp
+1530017187 source:c:\users\nelson\desktop\opengl-sqash-simulation\src\scene.cpp
 	<iostream>
 	<cmath>
 	<SDL2/SDL.h>
@@ -4040,6 +4040,7 @@
 	"geometry.h"
 	"forms.h"
 	"terrain.h"
+	"Balle.h"
 
 1529589804 source:d:\cours\polytech\projetcoop\opengl-sqash-simulation\src\animation.cpp
 	"animation.h"
@@ -4437,10 +4438,11 @@
 	"geometry.h"
 	"math.h"
 
-1529940280 source:c:\users\nelson\desktop\opengl-sqash-simulation\src\balle.cpp
+1529964611 source:c:\users\nelson\desktop\opengl-sqash-simulation\src\balle.cpp
 	"Balle.h"
 
-1529940280 c:\users\nelson\desktop\opengl-sqash-simulation\include\balle.h
+1530017555 c:\users\nelson\desktop\opengl-sqash-simulation\include\balle.h
 	"forms.h"
 	"geometry.h"
+	"math.h"
 

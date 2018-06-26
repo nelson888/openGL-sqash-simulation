@@ -266,24 +266,17 @@ int main(int argc, char* args[])
         forms_list[number_of_forms] = terrain;
         number_of_forms++;
 
-<<<<<<< HEAD
-        Balle *balle = new Balle(Point(0,HEIGHT/2,-(LENGTH/2)+0.2), Vector(50,100,100));
-=======
-<<<<<<< HEAD
         /*
         EllipseDisk *ellipse = new EllipseDisk(10, X_AXIS, Y_AXIS, WHITE, 0.750, 1.0);
         forms_list[number_of_forms] = ellipse;
         number_of_forms++;
         ellipse->getAnim().setPos(Point(0.0, HEIGHT/2, 0.0));
 */
-=======
         Balle *balle = new Balle(Point(0,HEIGHT/2,-(LENGTH/2)+0.2), Vector(0,100,100));
->>>>>>> cc5881a7b939b20c8f88b77582107f764796c204
         forms_list[number_of_forms] = balle;
         number_of_forms++;
 
 
->>>>>>> 72b304a480fbf5479014f8484a394a691bc7fac6
         // Get first "current time"
         previous_time = SDL_GetTicks();
         // While application is running
