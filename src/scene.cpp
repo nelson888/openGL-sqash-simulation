@@ -249,7 +249,7 @@ int main(int argc, char* args[])
         double HEIGHT = 4.8;
 
         // Camera position
-        Point camera_position(0.0, 2.0, -WIDTH*2);
+        Point camera_position(0.0, 2.0, -WIDTH);
 
         //Point that we look at
         Point look_at(0.0,HEIGHT/2, WIDTH);
@@ -268,7 +268,7 @@ int main(int argc, char* args[])
         number_of_forms++;
 
         Raquette *raquette = new Raquette(SCREEN_WIDTH, SCREEN_HEIGHT,
-                                          LENGTH, HEIGHT, 0.0, 1.0, 0.75);
+                                          LENGTH, HEIGHT, -WIDTH*0.35, 1.0, 0.75);
         forms_list[number_of_forms] = raquette;
         number_of_forms++;
         raquette->getAnim().setPos(Point(0.0, HEIGHT/2, 0.0));
