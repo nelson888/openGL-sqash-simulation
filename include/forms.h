@@ -144,6 +144,12 @@ public:
 
     void update(double delta_t);
     void render();
+
+    const Vector getVdir1() {return vdir1;}
+    const Vector getVdir2() {return vdir2;}
+    const double getWidth() {return width;}
+    const double getLength() {return length;}
+
 };
 
 #endif // FORMS_H_INCLUDED

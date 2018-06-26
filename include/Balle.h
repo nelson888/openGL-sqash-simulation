@@ -2,7 +2,7 @@
 #define BALLE_H
 
 #define WEIGHT 0.024
-#define RADIUS 0.02
+#define RADIUS 0.2
 #define DRAG 0.05
 
 #include "forms.h"
@@ -18,7 +18,7 @@ class Balle : public Sphere
         double getWeight();
 
         void update(double delta);
-
+        void checkCollision(Face face);
     protected:
 
     private:

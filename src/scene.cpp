@@ -11,6 +11,7 @@
 #include "forms.h"
 #include "terrain.h"
 #include "Balle.h"
+#include "raquette.h"
 
 
 using namespace std;
@@ -20,8 +21,8 @@ using namespace std;
 /* Constants and functions declarations                                    */
 /***************************************************************************/
 // Screen dimension constants
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+const int SCREEN_WIDTH = 1280;
+const int SCREEN_HEIGHT = 720;
 
 const double CAMERA_MOOVE_OFFSET = 0.25;
 
@@ -266,12 +267,12 @@ int main(int argc, char* args[])
         forms_list[number_of_forms] = terrain;
         number_of_forms++;
 
-        /*
-        EllipseDisk *ellipse = new EllipseDisk(10, X_AXIS, Y_AXIS, WHITE, 0.750, 1.0);
-        forms_list[number_of_forms] = ellipse;
+        Raquette *raquette = new Raquette(SCREEN_WIDTH, SCREEN_HEIGHT,
+                                          LENGTH, HEIGHT, 0.0, 1.0, 0.75);
+        forms_list[number_of_forms] = raquette;
         number_of_forms++;
-        ellipse->getAnim().setPos(Point(0.0, HEIGHT/2, 0.0));
-*/
+        raquette->getAnim().setPos(Point(0.0, HEIGHT/2, 0.0));
+
         Balle *balle = new Balle(Point(0,HEIGHT/2,-(LENGTH/2)+0.2), Vector(0,100,100));
         forms_list[number_of_forms] = balle;
         number_of_forms++;
@@ -312,19 +313,24 @@ int main(int argc, char* args[])
                         camera_position.z += CAMERA_MOOVE_OFFSET;
                         break;
                     case SDLK_LEFT:
-                        camera_position.x -= CAMERA_MOOVE_OFFSET;
+                        camera_position.x += CAMERA_MOOVE_OFFSET;
                         look_at.x += CAMERA_MOOVE_OFFSET;
                         break;
                     case SDLK_RIGHT:
-                        camera_position.x += CAMERA_MOOVE_OFFSET;
+                        camera_position.x -= CAMERA_MOOVE_OFFSET;
                         look_at.x -= CAMERA_MOOVE_OFFSET;
                         break;
                     default:
                         break;
                     }
                     break;
+                case SDL_KEYUP:
+                    break;
+
                 default:
                     break;
+
+
                 }
             }
 
@@ -335,6 +341,10 @@ int main(int argc, char* args[])
             {
                 previous_time = current_time;
                 update(forms_list, 1e-3 * elapsed_time); // International system units : seconds
+                Face *faces = terrain->getFaces();
+                for(int i=0;i<NB_FACES;i++) {
+                    balle->checkCollision(faces[i]);
+                }
             }
 
             // Render the scene

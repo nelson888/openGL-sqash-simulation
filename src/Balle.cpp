@@ -9,6 +9,14 @@ Balle::Balle(Point center, Vector accel):Sphere(RADIUS,BLACK)
     surface = M_PI * RADIUS*RADIUS;
 }
 
+void Balle::checkCollision(Face face) {
+    //ECRIVER ICI
+    //face.getVdir1()
+    //face.getVdir2()
+    //face.getAnim().getPos()
+
+}
+
 Balle::~Balle()
 {
     //dtor
