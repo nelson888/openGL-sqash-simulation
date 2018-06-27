@@ -15,6 +15,9 @@ Raquette::Raquette(int SCREEN_WIDTH, int SCREEN_HEIGHT,
             LIMIT_Y = TERRAIN_HEIGHT * 0.8f;
 }
 
+/**
+fonction qui convertit les coordonnées de la souris en coordonnées dans le terrain
+*/
 Point Raquette::screenPosToWorldPos(int x, int y) {
     Point point = Point(SCREEN_WIDTH - x,SCREEN_HEIGHT - y,z); //origine en haut a gauche
 

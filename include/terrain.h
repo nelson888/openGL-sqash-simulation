@@ -19,16 +19,16 @@ private:
     static const int NB_LINES = 11;
     static const double LINE_WIDTH = 0.05;
 
-    double length, width, height;
+    double width, length, height;
     Point center;
     Face faces[NB_FACES];
     Face lines[NB_LINES];
 
 public:
-    Terrain(Point center = Point(0.0, 0.0, 0.0), double length = 0.0, double width = 0.0, double height = 0.0);
+    Terrain(Point center = Point(0.0, 0.0, 0.0), double width = 0.0, double length = 0.0, double height = 0.0);
 
-    const double getLength() {return length;}
-    const double getWidth() {return width;}
+    const double getLength() {return width;}
+    const double getWidth() {return length;}
     const double getHeight() {return height;}
     const Point getCenter() {return center;}
 

@@ -32,6 +32,10 @@ const int MAX_FORMS_NUMBER = 10;
 // Animation actualization delay (in ms) => 100 updates per second
 const Uint32 ANIM_DELAY = 10;
 
+const double WIDTH = 6.4;
+const double LENGTH = 9.75;
+const double HEIGHT = 4.8;
+
 
 // Starts up SDL, creates window, and initializes OpenGL
 bool init(SDL_Window** window, SDL_GLContext* context);
@@ -244,15 +248,13 @@ int main(int argc, char* args[])
         // Event handler
         SDL_Event event;
 
-        double WIDTH = 9.75;
-        double LENGTH = 6.4;
-        double HEIGHT = 4.8;
+
 
         // Camera position
-        Point camera_position(0.0, 2.0, -WIDTH);
+        Point camera_position(0.0, 2.0, -LENGTH);
 
         //Point that we look at
-        Point look_at(0.0,HEIGHT/2, WIDTH);
+        Point look_at(0.0,HEIGHT/2, LENGTH);
 
         // The forms to render
         Form* forms_list[MAX_FORMS_NUMBER];
@@ -263,12 +265,12 @@ int main(int argc, char* args[])
         }
 
 
-        Terrain *terrain = new Terrain(Point(0, 0.0, 0.0), LENGTH, WIDTH, HEIGHT);
+        Terrain *terrain = new Terrain(Point(0, 0.0, 0.0), WIDTH, LENGTH, HEIGHT);
         forms_list[number_of_forms] = terrain;
         number_of_forms++;
 
         Raquette *raquette = new Raquette(SCREEN_WIDTH, SCREEN_HEIGHT,
-                                          LENGTH, HEIGHT, -WIDTH*0.5, 0.5);
+                                          WIDTH, HEIGHT, -LENGTH*0.5, 0.5);
         forms_list[number_of_forms] = raquette;
         number_of_forms++;
         raquette->getAnim().setPos(Point(0.0, HEIGHT/2, 0.0));
