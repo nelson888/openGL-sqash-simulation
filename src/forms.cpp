@@ -43,6 +43,9 @@ void Sphere::update(double delta_t)
 
 void Sphere::render()
 {
+    if (col.a == 0.0f) {
+        return;
+    }
     GLUquadric *quad;
 
     quad = gluNewQuadric();
@@ -64,6 +67,9 @@ void EllipseDisk::update(double delta_t)
 
 void EllipseDisk::render()
 {
+    if (col.a == 0.0f) {
+        return;
+    }
     Form::render();
 
     glBegin(GL_TRIANGLE_FAN);
@@ -103,6 +109,9 @@ void changeColor(Color color) {
 
 void Face::render()
 {
+    if (col.a == 0.0f) {
+        return;
+    }
     Point p1 = Point();
     Point p2 = p1, p3, p4 = p1;
     p2.translate(length*vdir1);
@@ -123,4 +132,11 @@ void Face::render()
         glVertex3d(p4.x, p4.y, p4.z);
     }
     glEnd();
+}
+
+void Face::setAlpha(float a) {
+    col.a = a;
+    middle1Color.a = a;
+    middle2Color.a = a;
+    endColor.a = a;
 }

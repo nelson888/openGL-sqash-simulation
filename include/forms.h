@@ -75,6 +75,7 @@ public:
     Animation& getAnim() {return anim;}
     void setAnim(Animation ani) {anim = ani;}
     void setColor(Color colorr) {col = colorr;}
+    Color getColor() {return col;}
     // This method should update the anim object with the corresponding physical model
     // It has to be done in each inherited class, otherwise all forms will have the same movements !
     // Virtual method for dynamic function call
@@ -141,6 +142,7 @@ public:
 
     void update(double delta_t);
     void render();
+    void setAlpha(float a);
 
     const Vector getVdir1() {return vdir1;}
     const Vector getVdir2() {return vdir2;}

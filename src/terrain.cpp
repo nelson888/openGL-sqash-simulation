@@ -19,7 +19,7 @@ Terrain::Terrain(Point center, double width, double length, double height) {
     faces[GROUND] = Face(Vector(1,0,0), Vector(0,0,1), Point(-width/2, 0, -length/2), width, length, GROUND_COLOR);
     faces[RIGHT] = Face(Vector(0,0,-1), Vector(0,1,0), Point(-width/2, 0, length/2), length, height, WALL_COLOR);
     faces[FRONT] = Face(Vector(1,0,0), Vector(0,1,0), Point(-width/2, 0, length/2), width, height, WALL_COLOR);
-    //faces[BACK] = Face(Vector(1,0,0), Vector(0,1,0), Point(-length/2, 0, -width/2), length, height, ColorGradient(WALL_COLOR, 0.6f));
+    faces[BACK] = Face(Vector(1,0,0), Vector(0,1,0), Point(-width/2, 0, -length/2), width, height, WALL_COLOR);
     faces[LEFT] = Face(Vector(0,0,-1), Vector(0,1,0), Point(width/2, 0, length/2), length, height, WALL_COLOR);
     faces[ROOF] = Face(Vector(1,0,0), Vector(0,0,1), Point(-width/2, height, -length/2), width, length, GROUND_COLOR);
 
@@ -37,6 +37,16 @@ Terrain::Terrain(Point center, double width, double length, double height) {
 
 }
 
+
+void Terrain::hideFace(int index) {
+    faces[index].setAlpha(0.0f);
+}
+
+void Terrain::showAllFaces() {
+    for (int i=0; i< NB_FACES; i++) {
+        faces[i].setAlpha(1.0f);
+    }
+}
 
 
 void Terrain::update(double delta_t)

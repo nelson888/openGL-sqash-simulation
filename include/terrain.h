@@ -4,18 +4,19 @@
 #include "forms.h"
 #include "geometry.h"
 
-static const int NB_FACES = 5;
+static const int NB_FACES = 6;
+static const int GROUND = 0;
+static const int RIGHT = 1;
+static const int LEFT = 2;
+static const int FRONT = 3;
+static const int BACK = 5;
+static const int ROOF = 4;
 
 class Terrain : public Form
 {
 private:
     //index des faces du tableau
-    static const int GROUND = 0;
-    static const int RIGHT = 1;
-    static const int LEFT = 2;
-    static const int FRONT = 3;
-    static const int BACK = 5;
-    static const int ROOF = 4;
+
     static const int NB_LINES = 11;
     static const double LINE_WIDTH = 0.05;
 
@@ -37,6 +38,9 @@ public:
     Face* getFaces() {
         return &this->faces[0];
     }
+
+    void hideFace(int index);
+    void showAllFaces();
 };
 
 

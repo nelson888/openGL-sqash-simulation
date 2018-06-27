@@ -13,6 +13,7 @@
 #include "terrain.h"
 #include "Balle.h"
 #include "raquette.h"
+#include "camera.h"
 
 
 using namespace std;
@@ -249,13 +250,7 @@ int main(int argc, char* args[])
         // Event handler
         SDL_Event event;
 
-
-
-        // Camera position
-        Point camera_position(0.0, 2.0, -LENGTH);
-
-        //Point that we look at
-        Point look_at(0.0,HEIGHT/2, LENGTH);
+        Camera *camera  = new Camera(LENGTH, WIDTH, Point(0.0, 2.0, -LENGTH), Point(0.0,HEIGHT/2, LENGTH/2));
 
         // The forms to render
         Form* forms_list[MAX_FORMS_NUMBER];
@@ -310,18 +305,18 @@ int main(int argc, char* args[])
                         quit = true;
                         break;
                     case SDLK_DOWN:
-                        camera_position.z -= CAMERA_MOOVE_OFFSET;
+                        camera->moveBy(- CAMERA_MOOVE_OFFSET * Z_AXIS);
                         break;
                     case SDLK_UP:
-                        camera_position.z += CAMERA_MOOVE_OFFSET;
+                        camera->moveBy(CAMERA_MOOVE_OFFSET * Z_AXIS);
                         break;
                     case SDLK_LEFT:
-                        camera_position.x += CAMERA_MOOVE_OFFSET;
-                        look_at.x += CAMERA_MOOVE_OFFSET;
+                        camera->moveBy(CAMERA_MOOVE_OFFSET * X_AXIS);
+                        //look_at.x += CAMERA_MOOVE_OFFSET;
                         break;
                     case SDLK_RIGHT:
-                        camera_position.x -= CAMERA_MOOVE_OFFSET;
-                        look_at.x -= CAMERA_MOOVE_OFFSET;
+                        camera->moveBy(-CAMERA_MOOVE_OFFSET * X_AXIS);
+                        //look_at.x -= CAMERA_MOOVE_OFFSET;
                         break;
                     default:
                         break;
@@ -350,8 +345,9 @@ int main(int argc, char* args[])
                 }
             }
 
+            camera->update(terrain);
             // Render the scene
-            render(forms_list, camera_position, look_at);
+            render(forms_list, camera->getPosition(), camera->getLookAt());
 
             // Update window screen
             SDL_GL_SwapWindow(gWindow);
