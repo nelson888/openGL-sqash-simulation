@@ -3699,7 +3699,7 @@
 	<stdint.h>
 	<inttypes.h>
 
-1530129690 c:\users\nelson\desktop\opengl-sqash-simulation\include\forms.h
+1530129718 c:\users\nelson\desktop\opengl-sqash-simulation\include\forms.h
 	"geometry.h"
 	"animation.h"
 
@@ -4032,7 +4032,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1530118924 source:c:\users\nelson\desktop\opengl-sqash-simulation\src\scene.cpp
+1530133337 source:c:\users\nelson\desktop\opengl-sqash-simulation\src\scene.cpp
 	<iostream>
 	<cmath>
 	<SDL2/SDL.h>
@@ -4462,10 +4462,11 @@
 	"animation.h"
 	<SDL2/SDL.h>
 
-1530119058 source:c:\users\nelson\desktop\opengl-sqash-simulation\src\camera.cpp
+1530133359 source:c:\users\nelson\desktop\opengl-sqash-simulation\src\camera.cpp
 	"camera.h"
 
-1530118863 c:\users\nelson\desktop\opengl-sqash-simulation\include\camera.h
+1530133249 c:\users\nelson\desktop\opengl-sqash-simulation\include\camera.h
 	"geometry.h"
 	"terrain.h"
+	"math.h"
 

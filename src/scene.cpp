@@ -26,18 +26,19 @@ using namespace std;
 const int SCREEN_WIDTH = 1280;
 const int SCREEN_HEIGHT = 720;
 
-const double CAMERA_MOOVE_OFFSET = 0.25;
-
 // Max number of forms : static allocation
 const int MAX_FORMS_NUMBER = 10;
 
 // Animation actualization delay (in ms) => 100 updates per second
 const Uint32 ANIM_DELAY = 10;
 
+//Terrain dimensions
 const double WIDTH = 6.4;
 const double LENGTH = 9.75;
 const double HEIGHT = 4.8;
 
+const double CAMERA_Z_OFFSET  = 0.2;
+const double CAMERA_ANGLE_OFFSET = 1.5;
 
 // Starts up SDL, creates window, and initializes OpenGL
 bool init(SDL_Window** window, SDL_GLContext* context);
@@ -250,7 +251,7 @@ int main(int argc, char* args[])
         // Event handler
         SDL_Event event;
 
-        Camera *camera  = new Camera(LENGTH, WIDTH, Point(0.0, 2.0, -LENGTH), Point(0.0,HEIGHT/2, LENGTH/2));
+        Camera *camera  = new Camera(LENGTH, WIDTH, Point(0.0, 2.0, -LENGTH), Point(0.0,HEIGHT/2, 0.0));
 
         // The forms to render
         Form* forms_list[MAX_FORMS_NUMBER];
@@ -266,7 +267,7 @@ int main(int argc, char* args[])
         number_of_forms++;
 
         Raquette *raquette = new Raquette(SCREEN_WIDTH, SCREEN_HEIGHT,
-                                          WIDTH, HEIGHT, -LENGTH*0.5, 0.5);
+                                          WIDTH, HEIGHT, -LENGTH*0.45, 0.5);
         forms_list[number_of_forms] = raquette;
         number_of_forms++;
         raquette->getAnim().setPos(Point(0.0, HEIGHT/2, 0.0));
@@ -305,17 +306,17 @@ int main(int argc, char* args[])
                         quit = true;
                         break;
                     case SDLK_DOWN:
-                        camera->moveBy(- CAMERA_MOOVE_OFFSET * Z_AXIS);
+                        camera->moveBy(-CAMERA_Z_OFFSET);
                         break;
                     case SDLK_UP:
-                        camera->moveBy(CAMERA_MOOVE_OFFSET * Z_AXIS);
+                        camera->moveBy(CAMERA_Z_OFFSET);
                         break;
                     case SDLK_LEFT:
-                        camera->moveBy(CAMERA_MOOVE_OFFSET * X_AXIS);
+                        camera->rotateBy(CAMERA_ANGLE_OFFSET);
                         //look_at.x += CAMERA_MOOVE_OFFSET;
                         break;
                     case SDLK_RIGHT:
-                        camera->moveBy(-CAMERA_MOOVE_OFFSET * X_AXIS);
+                        camera->rotateBy(-CAMERA_ANGLE_OFFSET);
                         //look_at.x -= CAMERA_MOOVE_OFFSET;
                         break;
                     default:
@@ -323,6 +324,20 @@ int main(int argc, char* args[])
                     }
                     break;
                 case SDL_KEYUP:
+                    switch(key_pressed)
+                    {
+                    case SDLK_DOWN:
+                    case SDLK_UP:
+                        camera->stopMoving();
+                        break;
+                    case SDLK_LEFT:
+                    case SDLK_RIGHT:
+                        camera->stopRotating();
+                        //look_at.x += CAMERA_MOOVE_OFFSET;
+                        break;
+                    default:
+                        break;
+                    }
                     break;
 
                 default:
