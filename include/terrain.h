@@ -3,6 +3,7 @@
 
 #include "forms.h"
 #include "geometry.h"
+#include "stdlib.h"
 
 static const int NB_FACES = 6;
 static const int GROUND = 0;
@@ -15,6 +16,19 @@ static const int ROOF = 4;
 class Terrain : public Form
 {
 private:
+    class TerrainFace : public Face
+    {
+    public:
+        int nbLines;
+        int *lines;
+        TerrainFace(Vector v1 = Vector(1,0,0), Vector v2 = Vector(0,0,1),
+          Point org = Point(), double l = 1.0, double w = 1.0,
+          ColorGradient colorGradient = ColorGradient(Color(), Color(), Color(), Color()), int nbLines = 0):Face(v1,v2,org,l,w,colorGradient)
+            {
+                this->nbLines = nbLines;
+                lines = (int *) malloc(nbLines * sizeof(int));
+            }
+        };
     //index des faces du tableau
 
     static const int NB_LINES = 11;
@@ -22,7 +36,7 @@ private:
 
     double width, length, height;
     Point center;
-    Face faces[NB_FACES];
+    TerrainFace faces[NB_FACES];
     Face lines[NB_LINES];
 
 public:

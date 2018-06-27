@@ -3,7 +3,7 @@
 
 #include "geometry.h"
 #include "animation.h"
-
+const double ANGLE2RAD = 0.01745329; //pi /180
 
 class Color
 {
