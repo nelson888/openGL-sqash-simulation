@@ -9,14 +9,18 @@
 class Camera
 {
     public:
-        Camera(double LENGTH, double WIDTH,Point position, Point center) {
+        Camera(double LENGTH, double WIDTH, double HEIGHT, Point position, Point center, double degree, double degreeY) {
             this->position = position;
             this->look_at = center;
             this->WIDTH = WIDTH;
             this->LENGTH = LENGTH;
-            degree = 180 + 90;
-            radius = - position.z;
+            this->HEIGHT = HEIGHT;
+            this->degree = degree;
+            this->degreeY = degreeY;
+            radius = abs(position.z);
+            radiusY = 20;
             degreeOffset = 0;
+            degreeYOffset = 0;
             radiusOffset = 0;
             this->update();
         }
@@ -25,10 +29,12 @@ class Camera
         Point getLookAt() {return look_at;}
 
         void rotateBy(double offset);
+        void rotateYBy(double offset);
         void moveBy(double z);
 
         void stopMoving();
         void stopRotating();
+        void stopRotatingY();
 
         //pour cacher les faces du terrain en fonction de la position de la camera
         void update(Terrain *terrain);
@@ -39,11 +45,15 @@ class Camera
         Point position;
         Point look_at;
         double radius;
+        double radiusY;
         double degree;
+        double degreeY;
         double LENGTH;
         double WIDTH;
+        double HEIGHT;
 
         double degreeOffset;
+        double degreeYOffset;
         double radiusOffset;
 
     void update();

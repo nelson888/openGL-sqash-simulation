@@ -2,12 +2,17 @@
 
 void Camera::update()
 {
-    position = Point(look_at.x + cos(degree*ANGLE2RAD)*radius, position.y, look_at.z + sin(degree*ANGLE2RAD)*radius);
+    position = Point(look_at.x + cos(degree*ANGLE2RAD)*radius, look_at.y + sin(degreeY*ANGLE2RAD)*radiusY, look_at.z + sin(degree*ANGLE2RAD)*radius);
 }
 
 void Camera::rotateBy(double offset)
 {
     degreeOffset = -offset;
+}
+
+void Camera::rotateYBy(double offset)
+{
+    degreeYOffset = -offset;
 }
 
 void Camera::moveBy(double offset)
@@ -19,6 +24,11 @@ void Camera::moveBy(double offset)
 void Camera::stopRotating()
 {
      degreeOffset = 0.0;
+}
+
+void Camera::stopRotatingY()
+{
+     degreeYOffset = 0.0;
 }
 
 void Camera::stopMoving()
@@ -40,10 +50,22 @@ void Camera::update(Terrain *terrain) {
         terrain->hideFace(RIGHT);
     }
 
-    if (degreeOffset ==0.0 && radiusOffset == 0.0) {
+    if (position.y >=  HEIGHT) {
+        terrain->hideFace(ROOF);
+    } else if (position.y <=  0) {
+        terrain->hideFace(GROUND);
+    }
+
+    if (degreeOffset ==0.0 && radiusOffset == 0.0 && degreeYOffset == 0.0) {
         return;
     }
     degree += degreeOffset;
-    radius += radiusOffset;
+    if (!((radius > 0 && radius <= 1 && radiusOffset < 0) ||
+        (radius < 0 && radius >= -1 && radiusOffset > 0))) {
+            radius += radiusOffset;
+        }
+
+    degreeY += degreeYOffset;
+
     update();
 }

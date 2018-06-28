@@ -3660,7 +3660,7 @@
 1529643982 c:\users\nelson\desktop\opengl-sqash-simulation\include\animation.h
 	"geometry.h"
 
-1529942708 c:\users\nelson\desktop\opengl-sqash-simulation\include\geometry.h
+1530186105 c:\users\nelson\desktop\opengl-sqash-simulation\include\geometry.h
 	<iostream>
 
 1530129656 source:c:\users\nelson\desktop\opengl-sqash-simulation\src\forms.cpp
@@ -3699,11 +3699,11 @@
 	<stdint.h>
 	<inttypes.h>
 
-1530129718 c:\users\nelson\desktop\opengl-sqash-simulation\include\forms.h
+1530188369 c:\users\nelson\desktop\opengl-sqash-simulation\include\forms.h
 	"geometry.h"
 	"animation.h"
 
-1529964611 source:c:\users\nelson\desktop\opengl-sqash-simulation\src\geometry.cpp
+1530186341 source:c:\users\nelson\desktop\opengl-sqash-simulation\src\geometry.cpp
 	<cmath>
 	"geometry.h"
 
@@ -4032,7 +4032,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1530133392 source:c:\users\nelson\desktop\opengl-sqash-simulation\src\scene.cpp
+1530189800 source:c:\users\nelson\desktop\opengl-sqash-simulation\src\scene.cpp
 	<iostream>
 	<cmath>
 	<SDL2/SDL.h>
@@ -4453,8 +4453,9 @@
 	"geometry.h"
 	"math.h"
 
-1530098310 source:c:\users\nelson\desktop\opengl-sqash-simulation\src\raquette.cpp
+1530186570 source:c:\users\nelson\desktop\opengl-sqash-simulation\src\raquette.cpp
 	"raquette.h"
+	<stdio.h>
 
 1530028178 c:\users\nelson\desktop\opengl-sqash-simulation\include\raquette.h
 	"forms.h"
@@ -4462,10 +4463,10 @@
 	"animation.h"
 	<SDL2/SDL.h>
 
-1530133359 source:c:\users\nelson\desktop\opengl-sqash-simulation\src\camera.cpp
+1530189629 source:c:\users\nelson\desktop\opengl-sqash-simulation\src\camera.cpp
 	"camera.h"
 
-1530133249 c:\users\nelson\desktop\opengl-sqash-simulation\include\camera.h
+1530189590 c:\users\nelson\desktop\opengl-sqash-simulation\include\camera.h
 	"geometry.h"
 	"terrain.h"
 	"math.h"

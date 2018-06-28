@@ -34,6 +34,7 @@ public:
     Vector(Point, Point);
     // Compute the vector norm
     double norm();
+    void setLength(double newLength);
     Vector integral(double delta_t);
     // Overloaded standard operators
     void operator+=(const Vector &v);

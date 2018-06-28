@@ -32,6 +32,18 @@ Vector::Vector(Point p1, Point p2)
 }
 
 
+void Vector::setLength(double newLength) {
+    double oldNorm = norm();
+    if (oldNorm == 0.0) {
+        return;
+    }
+    double factor = newLength/ oldNorm;
+    x = factor*x;
+    y = factor*y;
+    z = factor*z;
+
+}
+
 double Vector::norm()
 {
     double norm;

@@ -246,12 +246,14 @@ int main(int argc, char* args[])
     {
         // Main loop flag
         bool quit = false;
-        Uint32 current_time, previous_time, elapsed_time;
+        bool space = false;
+        bool freeze = false;
+        Uint32 current_time, previous_time, elapsed_time, paused_time = 0;
 
         // Event handler
         SDL_Event event;
 
-        Camera *camera  = new Camera(LENGTH, WIDTH, Point(0.0, 2.0, -LENGTH), Point(0.0,HEIGHT/2, 0.0));
+        Camera *camera  = new Camera(LENGTH, WIDTH, HEIGHT, Point(0.0, 2.0, -LENGTH), Point(0.0,HEIGHT/2, 0.0), 180 + 90, -1);
 
         // The forms to render
         Form* forms_list[MAX_FORMS_NUMBER];
@@ -272,7 +274,7 @@ int main(int argc, char* args[])
         number_of_forms++;
         raquette->getAnim().setPos(Point(0.0, HEIGHT/2, 0.0));
 
-        Balle *balle = new Balle(Point(0,HEIGHT/2,-(LENGTH/2)+0.2), Vector(0,100,100));
+        Balle *balle = new Balle(Point(0,HEIGHT/2,-(LENGTH/2)+0.2), Vector(0,50,50));
         forms_list[number_of_forms] = balle;
         number_of_forms++;
 
@@ -305,11 +307,22 @@ int main(int argc, char* args[])
                     case SDLK_ESCAPE:
                         quit = true;
                         break;
+                    case SDLK_SPACE:
+                        space = true;
+                        break;
                     case SDLK_DOWN:
-                        camera->moveBy(-CAMERA_Z_OFFSET);
+                        if (space) {
+                            camera->rotateYBy(CAMERA_ANGLE_OFFSET);
+                        } else {
+                            camera->moveBy(-CAMERA_Z_OFFSET);
+                        }
                         break;
                     case SDLK_UP:
-                        camera->moveBy(CAMERA_Z_OFFSET);
+                        if (space) {
+                            camera->rotateYBy(-CAMERA_ANGLE_OFFSET);
+                        } else {
+                            camera->moveBy(CAMERA_Z_OFFSET);
+                        }
                         break;
                     case SDLK_LEFT:
                         camera->rotateBy(CAMERA_ANGLE_OFFSET);
@@ -318,6 +331,16 @@ int main(int argc, char* args[])
                     case SDLK_RIGHT:
                         camera->rotateBy(-CAMERA_ANGLE_OFFSET);
                         //look_at.x -= CAMERA_MOOVE_OFFSET;
+                        break;
+                    case SDLK_f:
+                        if (!freeze) {
+                            paused_time = SDL_GetTicks(); //debut de la pause
+                        } else {
+
+                            previous_time += SDL_GetTicks() - paused_time;
+                            paused_time = 0;
+                        }
+                        freeze = !freeze;
                         break;
                     default:
                         break;
@@ -328,12 +351,16 @@ int main(int argc, char* args[])
                     {
                     case SDLK_DOWN:
                     case SDLK_UP:
+                        camera->stopRotatingY();
                         camera->stopMoving();
                         break;
                     case SDLK_LEFT:
                     case SDLK_RIGHT:
                         camera->stopRotating();
                         //look_at.x += CAMERA_MOOVE_OFFSET;
+                        break;
+                    case SDLK_SPACE:
+                        space = false;
                         break;
                     default:
                         break;
@@ -347,19 +374,20 @@ int main(int argc, char* args[])
                 }
             }
 
-            // Update the scene
-            current_time = SDL_GetTicks(); // get the elapsed time from SDL initialization (ms)
-            elapsed_time = current_time - previous_time;
-            if (elapsed_time > ANIM_DELAY)
-            {
-                previous_time = current_time;
-                update(forms_list, 1e-3 * elapsed_time); // International system units : seconds
-                Face *faces = terrain->getFaces();
-                for(int i=0;i<NB_FACES;i++) {
-                    balle->checkCollision(faces[i]);
+            if (!freeze) {
+                current_time = SDL_GetTicks(); // get the elapsed time from SDL initialization (ms)
+                // Update the scene
+                elapsed_time = current_time - previous_time;
+                if (elapsed_time > ANIM_DELAY)
+                {
+                    previous_time = current_time;
+                    update(forms_list, 1e-3 * elapsed_time); // International system units : seconds
+                    Face *faces = terrain->getFaces();
+                    for(int i=0;i<NB_FACES;i++) {
+                        balle->checkCollision(faces[i]);
+                    }
                 }
             }
-
             camera->update(terrain);
             // Render the scene
             render(forms_list, camera->getPosition(), camera->getLookAt());
