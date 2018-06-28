@@ -5,7 +5,7 @@ Raquette::Raquette(int SCREEN_WIDTH, int SCREEN_HEIGHT,
                  double z, double radius):EllipseDisk(radius, X_AXIS, Y_AXIS, Color(0.7f,0.7f,0.7f)) {
             getAnim().setPos(Point(0.0, 0.0, z));
             col.a = 0.7f;
-            double maxFactor = 0.75;
+            double maxFactor = 0.6;
             this->z = z;
             this->SCREEN_HEIGHT = maxFactor * ((double)SCREEN_HEIGHT);
             this->SCREEN_WIDTH = maxFactor * ((double)SCREEN_WIDTH);
@@ -18,6 +18,7 @@ Raquette::Raquette(int SCREEN_WIDTH, int SCREEN_HEIGHT,
             chargedColor = Color(RED);
             chargedColor.a = startColor.a;
             charging = false;
+            started = false;
 }
 
 /**
@@ -53,11 +54,32 @@ void Raquette::stopCharging(){
     charging = false;
 }
 
+void Raquette::start(Balle &balle) {
+    started = true;
+    Point position = balle.getAnim().getPos();
+    position.z = z - 0.01; //to provoke collision
+    balle.setPosition(position);
+}
+
 void Raquette::checkCollision(Balle &balle) {
+    if (!started) {
+        Point p = getAnim().getPos();
+        Vector v = Vector(p.x, p.y - TERRAIN_HEIGHT*0.2, 0);
+        v.x = (1.0 / TERRAIN_WIDTH) * v.x;
+        v.y =  (1.0/ TERRAIN_HEIGHT) * v.y;
+        p.translate(v);
+        p.z = z + balle.getRadius();
+        balle.setPosition(p);
+
+        if (SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_RIGHT)) {
+            start(balle);
+        }
+        return;
+    }
     Point ballPos = balle.getAnim().getPos();
     Point position = getAnim().getPos();
 
-    if (ballPos.z + balle.getRadius() > position.z) {
+    if (ballPos.z - balle.getRadius() > position.z) {
         return;
     }
 
@@ -95,7 +117,7 @@ void Raquette::update(double delta_t) {
             Color color = getColor();
             //change la couleur en fonction du chargement
             color = startColor + (chargeGauge/MAX_CHARGE) * (RED - startColor);
-            chargeGauge += delta_t * MAX_CHARGE/0.2;
+            chargeGauge += delta_t * MAX_CHARGE/0.1;
             setColor(color);
         }
     }

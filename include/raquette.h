@@ -19,6 +19,8 @@ class Raquette : public EllipseDisk
         void checkCollision(Balle &balle);
         void startCharging();
         void stopCharging();
+        void start(Balle &balle);
+        bool isStarted() {return started;}
     private:
         double z;
         double SCREEN_WIDTH;
@@ -32,6 +34,7 @@ class Raquette : public EllipseDisk
         bool charging;
         Color startColor;
         Color chargedColor;
+        bool started;
 
         const double MAX_CHARGE = 15;
 

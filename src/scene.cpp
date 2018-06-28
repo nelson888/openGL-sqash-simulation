@@ -40,6 +40,8 @@ const double HEIGHT = 4.8;
 const double CAMERA_Z_OFFSET  = 0.2;
 const double CAMERA_ANGLE_OFFSET = 1.5;
 
+const double MAX_RANDOM_SPEED = 60;
+
 // Starts up SDL, creates window, and initializes OpenGL
 bool init(SDL_Window** window, SDL_GLContext* context);
 
@@ -116,7 +118,9 @@ bool init(SDL_Window** window, SDL_GLContext* context)
     return success;
 }
 
-
+double randomDouble(double maximum) {
+    return maximum * ((double)rand())/((double)RAND_MAX);
+}
 bool initGL()
 {
     bool success = true;
@@ -271,7 +275,7 @@ int main(int argc, char* args[])
         forms_list[number_of_forms] = terrain;
         number_of_forms++;
 
-        Balle *balle = new Balle(Point(0.0,HEIGHT/2,0), Vector(0,5000, 0));
+        Balle *balle = new Balle(Point(0.0,HEIGHT/2,0), Vector(0, 0, 0));
         forms_list[number_of_forms] = balle;
         number_of_forms++;
 
@@ -313,7 +317,10 @@ int main(int argc, char* args[])
                         quit = true;
                         break;
                     case SDLK_SPACE:
-                        space = true;
+                        if (raquette->isStarted()) {
+                            space = true;
+                            break;
+                        }
                         break;
                     case SDLK_DOWN:
                         if (space) {
@@ -367,6 +374,10 @@ int main(int argc, char* args[])
                     case SDLK_SPACE:
                         space = false;
                         break;
+                    case SDLK_d:
+                        if (raquette->isStarted()) {
+                            balle->setVitesse(balle->getAnim().getSpeed() + Vector(randomDouble(MAX_RANDOM_SPEED), randomDouble(MAX_RANDOM_SPEED), randomDouble(MAX_RANDOM_SPEED)));
+                        }
                     default:
                         break;
                     }
