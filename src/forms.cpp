@@ -141,3 +141,18 @@ void Face::setAlpha(float a) {
     middle2Color.a = a;
     endColor.a = a;
 }
+
+Color operator+(const Color &v1, const Color &v2) {
+    return Color(v1.r + v2.r, v1.g + v2.g, v1.b + v2.b, v1.a);
+}
+Color operator-(const Color &v1, const Color &v2) {
+    return Color(v1.r - v2.r, v1.g - v2.g, v1.b - v2.b, v1.a);
+}
+Color operator*(const double &k, const Color &v) {
+    Color color = Color(v.r, v.g, v.b, v.a);
+
+    color.r *= k;
+    color.g *= k;
+    color.b *= k;
+    return color;
+}

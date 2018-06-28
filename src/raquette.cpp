@@ -2,7 +2,7 @@
 #include <stdio.h>
 Raquette::Raquette(int SCREEN_WIDTH, int SCREEN_HEIGHT,
                  double TERRAIN_WIDTH, double TERRAIN_HEIGHT,
-                 double z, double radius):EllipseDisk(radius, X_AXIS, 0.7 * Y_AXIS, Color(0.7f,0.7f,0.7f)) {
+                 double z, double radius):EllipseDisk(radius, X_AXIS, Y_AXIS, Color(0.7f,0.7f,0.7f)) {
             getAnim().setPos(Point(0.0, 0.0, z));
             col.a = 0.7f;
             double maxFactor = 0.75;
@@ -13,6 +13,11 @@ Raquette::Raquette(int SCREEN_WIDTH, int SCREEN_HEIGHT,
             this->TERRAIN_WIDTH = TERRAIN_WIDTH;
             LIMIT_X = TERRAIN_WIDTH * 0.45f;
             LIMIT_Y = TERRAIN_HEIGHT * 0.8f;
+            chargeGauge = -1;
+            startColor = getColor();
+            chargedColor = Color(RED);
+            chargedColor.a = startColor.a;
+            charging = false;
 }
 
 /**
@@ -39,12 +44,76 @@ Point Raquette::screenPosToWorldPos(int x, int y) {
     return point;
 }
 
+void Raquette::startCharging(){
+    chargeGauge = 0.0;
+    charging = true;
+}
+
+void Raquette::stopCharging(){
+    charging = false;
+}
+
+void Raquette::checkCollision(Balle &balle) {
+    Point ballPos = balle.getAnim().getPos();
+    Point position = getAnim().getPos();
+
+    if (ballPos.z + balle.getRadius() > position.z) {
+        return;
+    }
+
+    Vector v = Vector(position, ballPos);
+    if (v.norm() < getRadius()) {
+
+        if (v.isZero()) {
+            v = Vector(0.0, 0.0, 1.0);
+        }
+
+        v = (1.0/v.norm()) * v;
+
+        v.z = 1.6;
+
+        v.setLength(20 + chargeGauge*2);
+
+        Vector bVitesse = balle.getAnim().getSpeed();
+
+        balle.setVitesse(v);
+        ballPos.z = z + balle.getRadius();
+        balle.setPosition(ballPos);
+
+        charging = false;
+        chargeGauge = 0.0;
+        setColor(startColor);
+    }
+
+}
+
 void Raquette::update(double delta_t) {
     Form::update(delta_t);
 
+    if (charging) {
+        if (chargeGauge < MAX_CHARGE) {
+            Color color = getColor();
+            //change la couleur en fonction du chargement
+            color = startColor + (chargeGauge/MAX_CHARGE) * (RED - startColor);
+            chargeGauge += delta_t * MAX_CHARGE/0.2;
+            setColor(color);
+        }
+    }
     int x, y;
-    SDL_GetMouseState(&x, &y);
+    int mouseFlags = SDL_GetMouseState(&x, &y);
     getAnim().setPos(screenPosToWorldPos(x,y));
+
+    bool isCharging = mouseFlags & SDL_BUTTON(SDL_BUTTON_LEFT);
+
+    if (!charging && isCharging) {
+        charging = true;
+    }
+
+    if (charging && (mouseFlags & SDL_BUTTON(SDL_BUTTON_RIGHT))) {
+        charging = false;
+        chargeGauge = 0.0;
+        setColor(startColor);
+    }
+
+
 }
-
-

@@ -53,6 +53,9 @@ double Vector::norm()
     return norm;
 }
 
+bool Vector::isZero() {
+    return x == 0.0 && y == 0.0 && z == 0.0;
+}
 
 Vector Vector::integral(double delta_t)
 {

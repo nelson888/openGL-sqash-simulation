@@ -11,6 +11,7 @@ public:
     float r, g, b, a;
     Color(float rr = 1.0f, float gg = 1.0f, float bb = 1.0f) {r=rr; g=gg; b=bb; a = 1.f; }
     Color(float rr, float gg, float bb, float aa) {r=rr; g=gg; b=bb; a = aa; }
+    Color(const Color& color) {r=color.r; g=color.g; b=color.b; a = color.a; }
 };
 
 class ColorGradient
@@ -74,6 +75,9 @@ const Color YELLOW(1.0f, 1.0f, 0.0f);
 const Color WHITE(1.0f, 1.0f, 1.0f);
 const Color BLACK(0.0f, 0.0f, 0.0f);
 
+Color operator+(const Color &v1, const Color &v2);
+Color operator-(const Color &v1, const Color &v2);
+Color operator*(const double &k, const Color &v);
 
 // Generic class to render and animate an object
 class Form
@@ -133,6 +137,7 @@ public:
     void render();
     double getRadius() {return radius;}
 };
+
 
 
 // A face of a cube

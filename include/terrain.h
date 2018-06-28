@@ -4,6 +4,7 @@
 #include "forms.h"
 #include "geometry.h"
 #include "stdlib.h"
+#include "Balle.h"
 
 static const int NB_FACES = 6;
 static const int GROUND = 0;
@@ -49,12 +50,11 @@ public:
 
     void update(double delta_t);
     void render();
-    Face* getFaces() {
-        return &this->faces[0];
-    }
 
     void hideFace(int index);
     void showAllFaces();
+
+    void checkCollision(Balle &balle);
 };
 
 

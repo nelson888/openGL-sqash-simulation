@@ -4,8 +4,9 @@
 #include "forms.h"
 #include "geometry.h"
 #include "animation.h"
+#include "Balle.h"
+#include "math.h"
 #include <SDL2/SDL.h>
-
 
 class Raquette : public EllipseDisk
 {
@@ -15,6 +16,9 @@ class Raquette : public EllipseDisk
                  double z, double radius = 1.0);
 
         void update(double delta);
+        void checkCollision(Balle &balle);
+        void startCharging();
+        void stopCharging();
     private:
         double z;
         double SCREEN_WIDTH;
@@ -24,7 +28,12 @@ class Raquette : public EllipseDisk
         double TERRAIN_HEIGHT;
         double LIMIT_X;
         double LIMIT_Y;
+        double chargeGauge;
+        bool charging;
+        Color startColor;
+        Color chargedColor;
 
+        const double MAX_CHARGE = 15;
 
         Point screenPosToWorldPos(int x, int y);
 };

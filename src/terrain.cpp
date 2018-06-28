@@ -74,6 +74,107 @@ void Terrain::update(double delta_t)
     // Nothing to do here, animation update is done in child class method
 }
 
+void Terrain::checkCollision(Balle &balle) {
+    //ECRIVER ICI
+    //face.getVdir1()
+    //face.getVdir2()
+    //face.getAnim().getPos()
+    //Face face = faces[LEFT];
+    Vector nextAccel = balle.getNextAccel();
+    Point nextPosition = balle.getNextPosition();
+    Vector nextVitesse = balle.getNextVitesse();
+
+    //on gere les cas de dépassement a cause de vitesse trop elevée
+    if (nextPosition.x + balle.getRadius() > faces[LEFT].getAnim().getPos().x) { // a gauche
+        nextPosition.x = faces[LEFT].getAnim().getPos().x - balle.getRadius() + 0.01;
+    } else if (nextPosition.x - balle.getRadius() < faces[RIGHT].getAnim().getPos().x) {// a droite
+        nextPosition.x = faces[RIGHT].getAnim().getPos().x + balle.getRadius() - 0.01;
+    }
+
+    if (nextPosition.z + balle.getRadius() > faces[FRONT].getAnim().getPos().z) { // en haut
+        nextPosition.z = faces[FRONT].getAnim().getPos().z - balle.getRadius() + 0.01;
+    } else if (nextPosition.z - balle.getRadius() < faces[BACK].getAnim().getPos().z) {// a droite
+        nextPosition.z = faces[BACK].getAnim().getPos().z + balle.getRadius() - 0.01;
+    }
+
+    if (nextPosition.z + balle.getRadius() > faces[FRONT].getAnim().getPos().z) { // devant
+        nextPosition.z = faces[FRONT].getAnim().getPos().z - balle.getRadius() + 0.01;
+    } else if (nextPosition.z - balle.getRadius() < faces[BACK].getAnim().getPos().z) {// derriere
+        nextPosition.z = faces[BACK].getAnim().getPos().z + balle.getRadius() - 0.01;
+    }
+
+    if (nextPosition.y + balle.getRadius() > faces[ROOF].getAnim().getPos().y) { // en haut
+        nextPosition.y = faces[ROOF].getAnim().getPos().y - balle.getRadius() + 0.01;
+    } else if (nextPosition.y - balle.getRadius() < faces[GROUND].getAnim().getPos().y) {// en bas
+        nextPosition.y = faces[GROUND].getAnim().getPos().y + balle.getRadius() - 0.01;
+    }
+
+    for(int i=0; i<6;i++) {
+        Face face = faces[i];
+
+
+        Vector NormalePlan = face.getVdir1()^face.getVdir2();
+        //std::cout<<" Vecteur normal au plan "<<NormalePlan.x<<" "<<NormalePlan.y<<" "<<NormalePlan.z<<" "<<std::endl;
+        Vector DistanceMurC1 = ((Vector(balle.getAnim().getPos(),face.getAnim().getPos())) * NormalePlan );
+        //std::cout<<" Distance Mur C1 "<<DistanceMurC1.norm()<<std::endl;
+        //std::cout<<" Distance Mur C1 vecteur "<<DistanceMurC1.x<<" "<<DistanceMurC1.y<<" "<<DistanceMurC1.z<<std::endl;
+        Vector DistanceMurC2 = ((Vector(nextPosition,face.getAnim().getPos())) * NormalePlan );
+        //std::cout<<" Distance Mur C2 "<<DistanceMurC2.norm()<<std::endl;
+        //std::cout<<" Distance Mur C1 vecteur "<<DistanceMurC2.x<<" "<<DistanceMurC2.y<<" "<<DistanceMurC2.z<<std::endl;
+        //std::cout<<balle.getAnim().getPos().x<<" "<<balle.getAnim().getPos().y<<" "<<balle.getAnim().getPos().z<<std::endl;
+
+
+
+        if(DistanceMurC2.norm()<=balle.getRadius()){
+            std::cout<<"Le rayon est inférieur à la norme"<<std::endl;
+            if(i == LEFT) {
+                nextVitesse.x = -REBOND_SCALAR * nextVitesse.x;
+
+            }
+            if(i == RIGHT) {
+                nextVitesse.x = -REBOND_SCALAR * nextVitesse.x;
+
+            }
+            if(i == FRONT) {
+                nextVitesse.z = -REBOND_SCALAR * nextVitesse.z;
+            }
+            if(i == BACK) {
+                nextVitesse.z = -REBOND_SCALAR * nextVitesse.z;
+            }
+            if(i == GROUND) {
+                nextVitesse.y = - REBOND_SCALAR * nextVitesse.y ;
+                nextPosition.y += RADIUS;
+            }
+            if(i == ROOF) {
+                nextVitesse.y = - REBOND_SCALAR * nextVitesse.y ;
+                    nextPosition.y += RADIUS;
+            }
+        }
+        else if(DistanceMurC1.y*DistanceMurC2.y<=0){
+            //std::cout<<"Les vecteurs C1 et C2 sont de signe contraire"<<std::endl;
+            /*if(i == LEFT || i == RIGHT) {
+                nextVitesse.x = -REBOND_SCALAR * nextPosition.x;
+            }
+            if(i == FRONT || i == BACK) {
+                nextVitesse.z = -REBOND_SCALAR * nextPosition.z;
+            }
+            if(i == GROUND || i == ROOF) {
+                nextVitesse.y = - REBOND_SCALAR * nextPosition.y;
+            }
+            */
+
+        }
+    }
+
+    //std::cout<<" vdir1 " <<face.getVdir1().x<<" "<<face.getVdir1().y<<" "<<face.getVdir1().z<<" "<<std::endl;
+    //std::cout<<" vdir2 " <<face.getVdir2().x<<" "<<face.getVdir2().y<<" "<<face.getVdir2().z<<" "<<std::endl;
+
+
+    balle.setAccel(nextAccel);
+    balle.setVitesse(nextVitesse);
+    balle.setPosition(nextPosition);
+}
+
 void Terrain::render()
 {
     //translate for all forms of Terrain

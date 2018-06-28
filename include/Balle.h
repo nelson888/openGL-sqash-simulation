@@ -9,16 +9,25 @@
 #include "geometry.h"
 #include "math.h"
 
+const double REBOND_SCALAR = 0.8;
+
+
 class Balle : public Sphere
 {
     public:
-        Balle(Point center, Vector accel);
+        Balle(Point center, Vector vitesse);
         virtual ~Balle();
 
         double getWeight();
+        Point getNextPosition(){return nextPosition;};
+        Vector getNextAccel(){return nextAccel;};
+        Vector getNextVitesse(){return nextVitesse;};
+        void setPosition(Point p){anim.setPos(p);};
+        void setAccel(Vector v){anim.setAccel(v);};
+        void setVitesse(Vector v){anim.setSpeed(v);};
 
         void update(double delta);
-        void checkCollision(Face face);
+        void checkCollision(Face *faces);
     protected:
 
     private:
@@ -26,8 +35,9 @@ class Balle : public Sphere
         double drag;
         double surface;
 
-        Point position;
-        Vector accel;
+        Point nextPosition;
+        Vector nextAccel;
+        Vector nextVitesse;
 };
 
 #endif // BALLE_H

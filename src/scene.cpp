@@ -30,7 +30,7 @@ const int SCREEN_HEIGHT = 720;
 const int MAX_FORMS_NUMBER = 10;
 
 // Animation actualization delay (in ms) => 100 updates per second
-const Uint32 ANIM_DELAY = 10;
+const Uint32 ANIM_DELAY = 1;
 
 //Terrain dimensions
 const double WIDTH = 6.4;
@@ -139,6 +139,9 @@ bool initGL()
 
     // Initialize clear color : black with no transparency
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f );
+
+//    glEnable(GL_LIGHT0);
+//    glEnable(GL_LIGHTING);
 
     // Activate Z-Buffer
 
@@ -268,15 +271,17 @@ int main(int argc, char* args[])
         forms_list[number_of_forms] = terrain;
         number_of_forms++;
 
+        Balle *balle = new Balle(Point(0.0,HEIGHT/2,0), Vector(0,0,5000));
+        forms_list[number_of_forms] = balle;
+        number_of_forms++;
+
         Raquette *raquette = new Raquette(SCREEN_WIDTH, SCREEN_HEIGHT,
                                           WIDTH, HEIGHT, -LENGTH*0.45, 0.5);
         forms_list[number_of_forms] = raquette;
         number_of_forms++;
         raquette->getAnim().setPos(Point(0.0, HEIGHT/2, 0.0));
 
-        Balle *balle = new Balle(Point(WIDTH/2,HEIGHT/2,0), Vector(0,0,00));
-        forms_list[number_of_forms] = balle;
-        number_of_forms++;
+
 
 
         // Get first "current time"
@@ -381,11 +386,9 @@ int main(int argc, char* args[])
                 if (elapsed_time > ANIM_DELAY)
                 {
                     previous_time = current_time;
-                    update(forms_list, 1e-3 * elapsed_time); // International system units : seconds
-                    Face *faces = terrain->getFaces();
-                    for(int i=0;i<NB_FACES;i++) {
-                        balle->checkCollision(faces[i]);
-                    }
+                    update(forms_list, 1e-3 * 0.5 *  elapsed_time); // International system units : seconds
+                    terrain->checkCollision(*balle);
+                    raquette->checkCollision(*balle);
                 }
             }
             camera->update(terrain);
