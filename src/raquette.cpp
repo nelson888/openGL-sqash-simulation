@@ -45,23 +45,6 @@ void Raquette::update(double delta_t) {
     int x, y;
     SDL_GetMouseState(&x, &y);
     getAnim().setPos(screenPosToWorldPos(x,y));
-
-/*
-    SDL_GetMouseState(&x, &y);
-    Point mousePosition = screenPosToWorldPos(x,y);
-    Point position = getAnim().getPos();
-    Vector translation = Vector(position, mousePosition);
-    translation.setLength(1);
-    double a = translation.norm();
-    printf("%d\n", a);
-    if (a < 0) {
-        printf("%d\n", a);
-    }
-
-    position.translate(translation);
-    anim.setPos(position);*/
-
-
 }
 
 

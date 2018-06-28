@@ -32,8 +32,8 @@ Terrain::Terrain(Point center, double width, double length, double height) {
     lines[6] = Face(Vector(1,0,0), Vector(0,0,1), Point(width/2 - 1.6, 0.005, -length/2 + 2.610), LINE_WIDTH, 4.260 - 2.610, LINE_COLOR);
     lines[7] = Face(Vector(1,0,0), Vector(0,0,1), Point(-width/2, 0.005, -length/2 + 2.610), 1.6, LINE_WIDTH, LINE_COLOR);
     lines[8] = Face(Vector(1,0,0), Vector(0,0,1), Point(width/2 - 1.6, 0.005, -length/2 + 2.610), 1.6, LINE_WIDTH, LINE_COLOR);
-    lines[9] = Face(Vector(0,-0.25,-1), Vector(0,1,0), Point(width/2 - 0.004, 4.57, length/2), length, LINE_WIDTH, LINE_COLOR);
-    lines[10] = Face(Vector(0,-0.25,-1), Vector(0,1,0), Point(-width/2 + 0.004, 4.57, length/2), length, LINE_WIDTH, LINE_COLOR);
+    lines[9] = Face(Vector(0,-0.25,-1), Vector(0,1,0), Point(width/2 - 0.004, 4.57, length/2), length*1.03, LINE_WIDTH, LINE_COLOR);
+    lines[10] = Face(Vector(0,-0.25,-1), Vector(0,1,0), Point(-width/2 + 0.004, 4.57, length/2), length*1.03, LINE_WIDTH, LINE_COLOR);
 
     //set lines attached to faces
     faces[FRONT].lines[0] = 0;

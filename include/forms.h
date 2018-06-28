@@ -40,6 +40,13 @@ public:
         endColor = startColor;
     }
 
+    ColorGradient(const ColorGradient& color) {
+        startColor = color.startColor;
+        middle1Color = color.middle1Color;
+        middle2Color = color.middle2Color;
+        endColor = color.endColor;
+    }
+
     ColorGradient(const ColorGradient& color, float alpha) {
         startColor = color.startColor;
         middle1Color = color.middle1Color;
@@ -50,6 +57,9 @@ public:
         middle1Color.a = alpha;
         middle2Color.a = alpha;
         endColor.a = alpha;
+    }
+    ColorGradient reversed() {
+        return ColorGradient(endColor, middle2Color, middle1Color, startColor);
     }
     Color getStartColor() {return startColor;}
     Color getMiddle1Color() {return middle1Color;}

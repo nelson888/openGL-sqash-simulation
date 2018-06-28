@@ -274,7 +274,7 @@ int main(int argc, char* args[])
         number_of_forms++;
         raquette->getAnim().setPos(Point(0.0, HEIGHT/2, 0.0));
 
-        Balle *balle = new Balle(Point(0,HEIGHT/2,-(LENGTH/2)+0.2), Vector(0,50,50));
+        Balle *balle = new Balle(Point(WIDTH/2,HEIGHT/2,0), Vector(0,0,00));
         forms_list[number_of_forms] = balle;
         number_of_forms++;
 
