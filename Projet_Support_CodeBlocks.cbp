@@ -61,7 +61,6 @@
 		<Unit filename="src/raquette.cpp" />
 		<Unit filename="src/scene.cpp" />
 		<Unit filename="src/terrain.cpp" />
-		<Unit filename="src/test_program.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
