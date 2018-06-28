@@ -129,7 +129,6 @@ void Terrain::checkCollision(Balle &balle) {
             std::cout<<"Le rayon est inférieur à la norme"<<std::endl;
             if(i == LEFT) {
                 nextVitesse.x = -REBOND_SCALAR * nextVitesse.x;
-
             }
             if(i == RIGHT) {
                 nextVitesse.x = -REBOND_SCALAR * nextVitesse.x;
@@ -143,11 +142,10 @@ void Terrain::checkCollision(Balle &balle) {
             }
             if(i == GROUND) {
                 nextVitesse.y = - REBOND_SCALAR * nextVitesse.y ;
-                nextPosition.y += RADIUS;
+
             }
             if(i == ROOF) {
                 nextVitesse.y = - REBOND_SCALAR * nextVitesse.y ;
-                    nextPosition.y += RADIUS;
             }
         }
         else if(DistanceMurC1.y*DistanceMurC2.y<=0){

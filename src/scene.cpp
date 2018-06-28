@@ -271,7 +271,7 @@ int main(int argc, char* args[])
         forms_list[number_of_forms] = terrain;
         number_of_forms++;
 
-        Balle *balle = new Balle(Point(0.0,HEIGHT/2,0), Vector(0,0,5000));
+        Balle *balle = new Balle(Point(0.0,HEIGHT/2,0), Vector(0,5000, 0));
         forms_list[number_of_forms] = balle;
         number_of_forms++;
 
