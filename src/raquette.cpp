@@ -17,7 +17,6 @@ Raquette::Raquette(int SCREEN_WIDTH, int SCREEN_HEIGHT,
             startColor = getColor();
             chargedColor = Color(RED);
             chargedColor.a = startColor.a;
-            charging = false;
             started = false;
 }
 
@@ -45,13 +44,12 @@ Point Raquette::screenPosToWorldPos(int x, int y) {
     return point;
 }
 
+void Raquette::resetCharging() {
+    chargeGauge = 0.0;
+    setColor(startColor);
+}
 void Raquette::startCharging(){
     chargeGauge = 0.0;
-    charging = true;
-}
-
-void Raquette::stopCharging(){
-    charging = false;
 }
 
 void Raquette::start(Balle &balle) {
@@ -102,17 +100,19 @@ void Raquette::checkCollision(Balle &balle) {
         ballPos.z = z + balle.getRadius();
         balle.setPosition(ballPos);
 
-        charging = false;
-        chargeGauge = 0.0;
-        setColor(startColor);
+        resetCharging();
     }
 
 }
 
 void Raquette::update(double delta_t) {
     Form::update(delta_t);
+    int x, y;
+    int mouseFlags = SDL_GetMouseState(&x, &y);
+    getAnim().setPos(screenPosToWorldPos(x,y));
 
-    if (charging) {
+
+    if (mouseFlags & SDL_BUTTON(SDL_BUTTON_LEFT)) {
         if (chargeGauge < MAX_CHARGE) {
             Color color = getColor();
             //change la couleur en fonction du chargement
@@ -121,21 +121,8 @@ void Raquette::update(double delta_t) {
             setColor(color);
         }
     }
-    int x, y;
-    int mouseFlags = SDL_GetMouseState(&x, &y);
-    getAnim().setPos(screenPosToWorldPos(x,y));
 
-    bool isCharging = mouseFlags & SDL_BUTTON(SDL_BUTTON_LEFT);
-
-    if (!charging && isCharging) {
-        charging = true;
+    if (started && (mouseFlags & SDL_BUTTON(SDL_BUTTON_RIGHT))) {
+        resetCharging();
     }
-
-    if (charging && (mouseFlags & SDL_BUTTON(SDL_BUTTON_RIGHT))) {
-        charging = false;
-        chargeGauge = 0.0;
-        setColor(startColor);
-    }
-
-
 }

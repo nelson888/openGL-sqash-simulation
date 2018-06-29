@@ -18,7 +18,6 @@ class Raquette : public EllipseDisk
         void update(double delta);
         void checkCollision(Balle &balle);
         void startCharging();
-        void stopCharging();
         void start(Balle &balle);
         bool isStarted() {return started;}
     private:
@@ -31,7 +30,6 @@ class Raquette : public EllipseDisk
         double LIMIT_X;
         double LIMIT_Y;
         double chargeGauge;
-        bool charging;
         Color startColor;
         Color chargedColor;
         bool started;
@@ -39,6 +37,7 @@ class Raquette : public EllipseDisk
         const double MAX_CHARGE = 15;
 
         Point screenPosToWorldPos(int x, int y);
+        void resetCharging();
 };
 
 #endif // RAQUETTE_H
