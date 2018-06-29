@@ -25,6 +25,10 @@ Right-click to start the game.
 * 'h' - speed up time
 
 ## Screenshots
+![alt text](https://github.com/nelson888/openGL-sqash-simulation/blob/master/screenshots/Capture.PNG)
+![alt text](https://github.com/nelson888/openGL-sqash-simulation/blob/master/screenshots/Capture1.PNG)
+![alt text](https://github.com/nelson888/openGL-sqash-simulation/blob/master/screenshots/Capture2.PNG)
+![alt text](https://github.com/nelson888/openGL-sqash-simulation/blob/master/screenshots/Capture3.PNG)
 
 
 ## Built With
