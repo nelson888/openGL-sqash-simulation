@@ -26,7 +26,7 @@ fonction qui convertit les coordonnées de la souris en coordonnées dans le terra
 Point Raquette::screenPosToWorldPos(int x, int y) {
     Point point = Point(SCREEN_WIDTH - x,SCREEN_HEIGHT - y,z); //origine en haut a gauche
 
-    point.x = point.x * TERRAIN_WIDTH/SCREEN_WIDTH - TERRAIN_WIDTH *0.5f + getRadius() * 2;
+    point.x = point.x * TERRAIN_WIDTH/SCREEN_WIDTH - TERRAIN_WIDTH *0.5f + getRadius() * 4;
     point.y = point.y * TERRAIN_HEIGHT/SCREEN_HEIGHT + getRadius();
 
     if (point.x > LIMIT_X) {

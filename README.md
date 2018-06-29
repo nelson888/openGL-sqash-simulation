@@ -1,15 +1,33 @@
-# openGL-sqash-simulation
-## fonctionnalités
-Pour commencer le jeu, effectuer un click droit avec la souris.
+# openGL sqash simulation
+This openGL project displays a simulation of the squash
 
-On peut tourner la camera avec les flèches gauches et droites. On peut avancer/reculer
-la camera avec les touches haut/bas.
+## Getting Started
+These instructions will make you run the project.
 
-Si on maintient la barre espace, appuyer sur haut/bas vas effectuer une rotation par rapport à l'axe des y.
+### Prerequisites
+You need to be on a Windows environment and have Code::Blocks installed
 
-Appuyer sur la touche 'f' pour stopper le temps, et reappuyer sur cette meme touche pour remettre le temps en marche
+### Running
+Open the project by opening 'Projet_Support_CodeBlocks.cbp' in Code::Blocks,
+modify the value of variables SCREEN_WIDTH and SCREEN_HEIGHT to the dimensions of you computer screen and then run the project with the run button.
 
-Appuyer sur la touche 'd' pour appliquer une force aléatoire sur la balle.
+## Controls
+You can move the racket by mooving the mouse on the screen.
+Right-click to start the game.
+* left/right arrow - rotate the camera from the center
+* up/down arrow - move the camera forward backward
+* maitining space + up/down arrow - rotate along the Y axis from the center
+* maintain left click - charge the racket to apply a greater force to the ball on the next collision
+* right click - cancel the charge
+* 'd': apply a random impulse on the ball
+* 'f' - (un)freeze time
+* 'g'- slow down time
+* 'h' - speed up time
 
-Faire un click gauche va charger la raquette pour que son prochain coup avec la balle soit plus puissant.
-Faire un click droit va annuler la charge de la raquette
+## Screenshots
+
+
+## Built With
+
+* OpenGL
+* SDL
