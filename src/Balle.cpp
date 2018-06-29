@@ -19,7 +19,7 @@ double Balle::getWeight(){return weight;}
 void Balle::update(double delta) {
     Vector speed = anim.getSpeed();
 
-    Vector Ft = 0;//(1/2) * drag * speed.norm() * surface * speed;
+    Vector Ft = -(1.0/2.0) * drag * speed.norm() * surface * speed;
     nextAccel = (1/weight)*Ft + Vector(0,-9.81,0);
 
     nextVitesse = anim.getSpeed()+(delta*anim.getAccel());

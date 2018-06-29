@@ -124,6 +124,7 @@ void Terrain::checkCollision(Balle &balle) {
             }
             if(i == GROUND) {
                 nextVitesse.y = - REBOND_SCALAR * nextVitesse.y ;
+                nextVitesse = 0.99*nextVitesse;
 
             }
             if(i == ROOF) {

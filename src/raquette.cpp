@@ -117,7 +117,7 @@ void Raquette::update(double delta_t) {
             Color color = getColor();
             //change la couleur en fonction du chargement
             color = startColor + (chargeGauge/MAX_CHARGE) * (RED - startColor);
-            chargeGauge += delta_t * MAX_CHARGE/0.1;
+            chargeGauge += delta_t * MAX_CHARGE/0.5;
             setColor(color);
         }
     }

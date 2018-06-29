@@ -255,6 +255,7 @@ int main(int argc, char* args[])
         bool quit = false;
         bool space = false;
         bool freeze = false;
+        double coeffDT = 1.0;
         Uint32 current_time, previous_time, elapsed_time, paused_time = 0;
 
         // Event handler
@@ -354,6 +355,14 @@ int main(int argc, char* args[])
                         }
                         freeze = !freeze;
                         break;
+                    case SDLK_KP_MINUS:
+                        coeffDT -=0.05;
+                        std::cout<<"Le coefficient de DT est "<<coeffDT<<std::endl;
+                        break;
+                    case SDLK_KP_PLUS:
+                        coeffDT +=0.05;
+                        std::cout<<"Le coefficient de DT est "<<coeffDT<<std::endl;
+                        break;
                     default:
                         break;
                     }
@@ -397,7 +406,7 @@ int main(int argc, char* args[])
                 if (elapsed_time > ANIM_DELAY)
                 {
                     previous_time = current_time;
-                    update(forms_list, 1e-3 * 0.5 *  elapsed_time); // International system units : seconds
+                    update(forms_list, 1e-3 * coeffDT *  elapsed_time); // International system units : seconds
                     terrain->checkCollision(*balle);
                     raquette->checkCollision(*balle);
                 }

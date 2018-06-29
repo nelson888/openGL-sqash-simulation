@@ -3,7 +3,7 @@
 
 #define WEIGHT 0.024
 #define RADIUS 0.2
-#define DRAG 0.05
+#define DRAG 0.01
 
 #include "forms.h"
 #include "geometry.h"
