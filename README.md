@@ -1,5 +1,5 @@
 # openGL sqash simulation
-This openGL project displays a simulation of the squash
+This openGL project displays a simulation of the squash. It was a group project realized at my school
 
 ## Getting Started
 These instructions will make you run the project.
